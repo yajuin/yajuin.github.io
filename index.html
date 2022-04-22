@@ -71,6 +71,52 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-4-22" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2022/04/22/4-22/" class="article-date">
+  <time class="dt-published" datetime="2022-04-22T12:44:47.000Z" itemprop="datePublished">2022-04-22</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2022/04/22/4-22/">4-22</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="Docker"><a href="#Docker" class="headerlink" title="Docker"></a>Docker</h1><h4 id="Docker-基本命令"><a href="#Docker-基本命令" class="headerlink" title="Docker 基本命令"></a>Docker 基本命令</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">docker images</span><br><span class="line">docker run -it centos /bin/bash # 启动并进入容器</span><br><span class="line">ls # 容器内目录，可以看出是一个小型操作系统</span><br><span class="line">bin  etc   lib	  lost+found  mnt  proc  run   srv  tmp  var</span><br><span class="line">dev  home  lib64  media       opt  root  sbin  sys  usr</span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash"><span class="comment"># 容器内和容器外完全隔离</span></span></span><br><span class="line"></span><br><span class="line">exit # 退出</span><br><span class="line">ctrl + P + Q # 容器退出但不停止</span><br><span class="line"></span><br><span class="line">docker ps # 查看正在运行的容器</span><br><span class="line">docker ps -a # 显示正在和结束的所有容器</span><br><span class="line">docker ps -aq # 只显示容器编号</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">删除容器</span></span><br><span class="line">docker rm 容器ID  # 删除指定的容器，不能删除正在运行的容器</span><br><span class="line">docker rm -f $(docker ps -aq)     # 强制全部删除</span><br><span class="line">docker ps -a -qlxargs docker rm   # 同上</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">start stop 容器</span></span><br><span class="line">docker start 容器id</span><br><span class="line">docker restart 容器id</span><br><span class="line">docker stop 容器id</span><br><span class="line">docker kill 容器id   # 如果stop报错，则使用</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h4 id="Docker-其他常用命令"><a href="#Docker-其他常用命令" class="headerlink" title="Docker 其他常用命令"></a>Docker 其他常用命令</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">后台启动容器</span></span><br><span class="line">docker run -d centos</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">查看日志</span></span><br><span class="line">docker logs -f -t --tail 容器ID</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">查看容器中进程信息</span></span><br><span class="line">docker top 4b6a809ac614</span><br><span class="line">UID                 PID                 PPID                C                   STIME               TTY                 TIME     </span><br><span class="line">root                24551               24529               0                   20:30               ?                   00:00:00 </span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">查看容器内部信息  镜像元数据</span></span><br><span class="line">docker inspect 4b6a809ac614</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">进入当前正在运行的容器</span></span><br><span class="line">docker exec -it 容器ID /bin/bash</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">容器内进程信息</span></span><br><span class="line">ps -ef</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">比<span class="built_in">exec</span>，不常用</span></span><br><span class="line">docker attach -it 容器ID /bin/bash</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">copy容器内文件到主机</span></span><br><span class="line">docker cp 容器ID:容器内路径 目的主机路径</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">1.在主机home下新建yajun.java</span></span><br><span class="line">touch yajun.java</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">2.进入容器</span></span><br><span class="line">docker attach 容器ID</span><br><span class="line">cd home</span><br><span class="line">touch test.java</span><br><span class="line">exit</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">3.<span class="built_in">cp</span></span></span><br><span class="line">docker cp 1a71a29a58c1:/home/test.java /home</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2022/04/22/4-22/" data-id="cl2ahs67t0000d8uc8zq9gcct" data-title="4-22" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
     <article id="post-4-21" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="/2022/04/21/4-21/" class="article-date">
@@ -93,9 +139,14 @@
     
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <h1 id="Docker"><a href="#Docker" class="headerlink" title="Docker"></a>Docker</h1><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">docker images</span><br><span class="line">docker run -it centos /bin/bash # 启动并进入容器</span><br><span class="line">ls # 容器内目录，可以看出是一个小型操作系统</span><br><span class="line">bin  etc   lib	  lost+found  mnt  proc  run   srv  tmp  var</span><br><span class="line">dev  home  lib64  media       opt  root  sbin  sys  usr</span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash"><span class="comment"># 容器内和容器外完全隔离</span></span></span><br><span class="line"></span><br><span class="line">exit # 退出</span><br><span class="line">ctrl + P + Q # 容器退出但不停止</span><br><span class="line"></span><br><span class="line">docker ps # 查看正在运行的容器</span><br><span class="line">docker ps -a # 显示正在和结束的所有容器</span><br><span class="line">docker ps -aq # 只显示容器编号</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">删除容器</span></span><br><span class="line">docker rm 容器ID  # 删除指定的容器，不能删除正在运行的容器</span><br><span class="line">docker rm -f $(docker ps -aq)     # 强制全部删除</span><br><span class="line">docker ps -a -qlxargs docker rm   # 同上</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">start stop 容器</span></span><br><span class="line">docker start 容器id</span><br><span class="line">docker restart 容器id</span><br><span class="line">docker stop 容器id</span><br><span class="line">docker kill 容器id   # 如果stop报错，则使用</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+        <h1 id="Docker"><a href="#Docker" class="headerlink" title="Docker"></a>Docker</h1><h4 id="Docker-基本命令"><a href="#Docker-基本命令" class="headerlink" title="Docker 基本命令"></a>Docker 基本命令</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">docker images</span><br><span class="line">docker run -it centos /bin/bash # 启动并进入容器</span><br><span class="line">ls # 容器内目录，可以看出是一个小型操作系统</span><br><span class="line">bin  etc   lib	  lost+found  mnt  proc  run   srv  tmp  var</span><br><span class="line">dev  home  lib64  media       opt  root  sbin  sys  usr</span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash"><span class="comment"># 容器内和容器外完全隔离</span></span></span><br><span class="line"></span><br><span class="line">exit # 退出</span><br><span class="line">ctrl + P + Q # 容器退出但不停止</span><br><span class="line"></span><br><span class="line">docker ps # 查看正在运行的容器</span><br><span class="line">docker ps -a # 显示正在和结束的所有容器</span><br><span class="line">docker ps -aq # 只显示容器编号</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">删除容器</span></span><br><span class="line">docker rm 容器ID  # 删除指定的容器，不能删除正在运行的容器</span><br><span class="line">docker rm -f $(docker ps -aq)     # 强制全部删除</span><br><span class="line">docker ps -a -qlxargs docker rm   # 同上</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">start stop 容器</span></span><br><span class="line">docker start 容器id</span><br><span class="line">docker restart 容器id</span><br><span class="line">docker stop 容器id</span><br><span class="line">docker kill 容器id   # 如果stop报错，则使用</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
-<p><img src="C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20220421165107194.png" alt="image-20220421165107194"></p>
+
+
+
+
+<h4 id="Docker-其他常用命令"><a href="#Docker-其他常用命令" class="headerlink" title="Docker 其他常用命令"></a>Docker 其他常用命令</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">后台启动容器</span></span><br><span class="line">docker run -d centos</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">查看日志</span></span><br><span class="line">docker logs -f -t --tail 容器ID</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">查看容器中进程信息</span></span><br><span class="line">docker top 4b6a809ac614</span><br><span class="line">UID                 PID                 PPID                C                   STIME               TTY                 TIME     </span><br><span class="line">root                24551               24529               0                   20:30               ?                   00:00:00 </span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">查看容器内部信息  镜像元数据</span></span><br><span class="line">docker inspect 4b6a809ac614</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">进入当前正在运行的容器</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
 
       
     </div>
@@ -522,44 +573,6 @@
 
 
   
-    <article id="post-4-11-daily" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2022/04/11/4-11-daily/" class="article-date">
-  <time class="dt-published" datetime="2022-04-11T03:13:33.000Z" itemprop="datePublished">2022-04-11</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2022/04/11/4-11-daily/">4-11-daily</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h1 id="daily"><a href="#daily" class="headerlink" title="daily"></a>daily</h1><h3 id="finish-use-github-io-access-to-blog"><a href="#finish-use-github-io-access-to-blog" class="headerlink" title="finish : use github.io access to blog"></a>finish : use github.io access to blog</h3><h3 id="problems-easy-hexo"><a href="#problems-easy-hexo" class="headerlink" title="problems: easy hexo"></a>problems: easy hexo</h3><h3 id="开启Golang语法学习，看一看清华公开课数据结构与算法"><a href="#开启Golang语法学习，看一看清华公开课数据结构与算法" class="headerlink" title="开启Golang语法学习，看一看清华公开课数据结构与算法"></a>开启Golang语法学习，看一看清华公开课数据结构与算法</h3>
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2022/04/11/4-11-daily/" data-id="cl1ufoe090000tcuc90dm7g5w" data-title="4-11-daily" class="article-share-link">Share</a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
 
 
   <nav id="page-nav">
@@ -596,6 +609,10 @@
       <ul>
         
           <li>
+            <a href="/2022/04/22/4-22/">4-22</a>
+          </li>
+        
+          <li>
             <a href="/2022/04/21/4-21/">4-21</a>
           </li>
         
@@ -609,10 +626,6 @@
         
           <li>
             <a href="/2022/04/17/4-17/">4-17</a>
-          </li>
-        
-          <li>
-            <a href="/2022/04/16/4-16/">4-16</a>
           </li>
         
       </ul>
