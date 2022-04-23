@@ -71,6 +71,66 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-4-23" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2022/04/23/4-23/" class="article-date">
+  <time class="dt-published" datetime="2022-04-23T02:03:50.000Z" itemprop="datePublished">2022-04-23</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2022/04/23/4-23/">4-23</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h3 id="Docker-命令小结"><a href="#Docker-命令小结" class="headerlink" title="Docker 命令小结"></a>Docker 命令小结</h3><p><img src="C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20220423104942701.png" alt="image-20220423104942701"></p>
+<h4 id="帮助文档，All-命令-按照首字母排序"><a href="#帮助文档，All-命令-按照首字母排序" class="headerlink" title="帮助文档，All 命令, 按照首字母排序"></a>帮助文档，All 命令, 按照首字母排序</h4><p><img src="C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20220423105114054.png" alt="image-20220423105114054"></p>
+<p><img src="C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20220423105132861.png" alt="image-20220423105132861"></p>
+<p>之前 just 学习了最常用的容器和镜像的命令。</p>
+<h3 id="作业练习"><a href="#作业练习" class="headerlink" title="作业练习"></a>作业练习</h3><h4 id="作业一：docker安装Nginx"><a href="#作业一：docker安装Nginx" class="headerlink" title="作业一：docker安装Nginx"></a>作业一：docker安装Nginx</h4><ul>
+<li><pre><code class="shell">docker search nginx  # 去docker hub仓库搜索
+docker pull nginx     # download
+
+# 后台启动，赋名，使用3344访问默认端口80
+docker run -d --name nginx01 -p:3344:80 nginx
+curl localhost:3344
+
+# 1.进入容器
+docker exec -it nginx01 /bin/bash
+# 2.查看nginx的配置文件 nginx.conf
+whereis nginx
+cd /etc/nginx
+ls
+</code></pre>
+</li>
+<li></li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2022/04/23/4-23/" data-id="cl2br3y0p00009wuc3ujxaic4" data-title="4-23" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
     <article id="post-4-22" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="/2022/04/22/4-22/" class="article-date">
@@ -99,7 +159,7 @@
 
 
 
-<h4 id="Docker-其他常用命令"><a href="#Docker-其他常用命令" class="headerlink" title="Docker 其他常用命令"></a>Docker 其他常用命令</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">后台启动容器</span></span><br><span class="line">docker run -d centos</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">查看日志</span></span><br><span class="line">docker logs -f -t --tail 容器ID</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">查看容器中进程信息</span></span><br><span class="line">docker top 4b6a809ac614</span><br><span class="line">UID                 PID                 PPID                C                   STIME               TTY                 TIME     </span><br><span class="line">root                24551               24529               0                   20:30               ?                   00:00:00 </span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">查看容器内部信息  镜像元数据</span></span><br><span class="line">docker inspect 4b6a809ac614</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">进入当前正在运行的容器</span></span><br><span class="line">docker exec -it 容器ID /bin/bash</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">容器内进程信息</span></span><br><span class="line">ps -ef</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">比<span class="built_in">exec</span>，不常用</span></span><br><span class="line">docker attach -it 容器ID /bin/bash</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">copy容器内文件到主机</span></span><br><span class="line">docker cp 容器ID:容器内路径 目的主机路径</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">1.在主机home下新建yajun.java</span></span><br><span class="line">touch yajun.java</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">2.进入容器</span></span><br><span class="line">docker attach 容器ID</span><br><span class="line">cd home</span><br><span class="line">touch test.java</span><br><span class="line">exit</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">3.<span class="built_in">cp</span></span></span><br><span class="line">docker cp 1a71a29a58c1:/home/test.java /home</span><br></pre></td></tr></table></figure>
+<h4 id="Docker-其他常用命令"><a href="#Docker-其他常用命令" class="headerlink" title="Docker 其他常用命令"></a>Docker 其他常用命令</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">后台启动容器</span></span><br><span class="line">docker run -d centos</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">查看日志</span></span><br><span class="line">docker logs -f -t --tail 容器ID</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">查看容器中进程信息</span></span><br><span class="line">docker top 4b6a809ac614</span><br><span class="line">UID                 PID                 PPID                C                   STIME               TTY                 TIME     </span><br><span class="line">root                24551               24529               0                   20:30               ?                   00:00:00 </span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">查看容器内部信息  镜像元数据</span></span><br><span class="line">docker inspect 4b6a809ac614</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">进入当前正在运行的容器</span></span><br><span class="line">docker exec -it 容器ID /bin/bash</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">容器内进程信息</span></span><br><span class="line">ps -ef</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">比<span class="built_in">exec</span>，不常用</span></span><br><span class="line">docker attach -it 容器ID /bin/bash</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">copy容器内文件到主机</span></span><br><span class="line">docker cp 容器ID:容器内路径 目的主机路径</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">1.在主机home下新建yajun.java,好像没什么用</span></span><br><span class="line">touch yajun.java</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">2.进入容器</span></span><br><span class="line">docker attach 容器ID</span><br><span class="line">cd home</span><br><span class="line">touch test.java</span><br><span class="line">exit</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">3.<span class="built_in">cp</span></span></span><br><span class="line">docker cp 1a71a29a58c1:/home/test.java /home</span><br></pre></td></tr></table></figure>
 
 
       
@@ -534,45 +594,6 @@
 
 
   
-    <article id="post-4-11-daily2" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2022/04/11/4-11-daily2/" class="article-date">
-  <time class="dt-published" datetime="2022-04-11T08:07:46.000Z" itemprop="datePublished">2022-04-11</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2022/04/11/4-11-daily2/">4-11-daily2</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h1 id="问题：本地更新了，hexo-d-也成功，但是yajuin-github-io没有更新。"><a href="#问题：本地更新了，hexo-d-也成功，但是yajuin-github-io没有更新。" class="headerlink" title="问题：本地更新了，hexo d 也成功，但是yajuin.github.io没有更新。"></a>问题：本地更新了，hexo d 也成功，但是yajuin.github.io没有更新。</h1><p>已解决</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2022/04/11/4-11-daily2/" data-id="cl1ufoe0d0001tcucdkalgpb0" data-title="4-11-daily2" class="article-share-link">Share</a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
 
 
   <nav id="page-nav">
@@ -609,6 +630,10 @@
       <ul>
         
           <li>
+            <a href="/2022/04/23/4-23/">4-23</a>
+          </li>
+        
+          <li>
             <a href="/2022/04/22/4-22/">4-22</a>
           </li>
         
@@ -622,10 +647,6 @@
         
           <li>
             <a href="/2022/04/19/4-19/">4-19</a>
-          </li>
-        
-          <li>
-            <a href="/2022/04/17/4-17/">4-17</a>
           </li>
         
       </ul>

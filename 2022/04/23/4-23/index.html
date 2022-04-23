@@ -4,19 +4,23 @@
   <meta charset="utf-8">
   
   
-  <title>4-17 | Hexo</title>
+  <title>4-23 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="weekly dfs up down left and right, very complex, need to study.">
+  <meta name="description" content="Docker 命令小结 帮助文档，All 命令, 按照首字母排序  之前 just 学习了最常用的容器和镜像的命令。 作业练习作业一：docker安装Nginx docker search nginx  # 去docker hub仓库搜索 docker pull nginx     # download  # 后台启动，赋名，使用3344访问默认端口80 docker run -d --name">
 <meta property="og:type" content="article">
-<meta property="og:title" content="4-17">
-<meta property="og:url" content="http://example.com/2022/04/17/4-17/index.html">
+<meta property="og:title" content="4-23">
+<meta property="og:url" content="http://example.com/2022/04/23/4-23/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="weekly dfs up down left and right, very complex, need to study.">
+<meta property="og:description" content="Docker 命令小结 帮助文档，All 命令, 按照首字母排序  之前 just 学习了最常用的容器和镜像的命令。 作业练习作业一：docker安装Nginx docker search nginx  # 去docker hub仓库搜索 docker pull nginx     # download  # 后台启动，赋名，使用3344访问默认端口80 docker run -d --name">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2022-04-17T07:41:55.000Z">
-<meta property="article:modified_time" content="2022-04-17T07:44:07.600Z">
+<meta property="og:image" content="c:/Users/Administrator/AppData/Roaming/Typora/typora-user-images/image-20220423104942701.png">
+<meta property="og:image" content="c:/Users/Administrator/AppData/Roaming/Typora/typora-user-images/image-20220423105114054.png">
+<meta property="og:image" content="c:/Users/Administrator/AppData/Roaming/Typora/typora-user-images/image-20220423105132861.png">
+<meta property="article:published_time" content="2022-04-23T02:03:50.000Z">
+<meta property="article:modified_time" content="2022-04-23T11:01:04.364Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="c:/Users/Administrator/AppData/Roaming/Typora/typora-user-images/image-20220423104942701.png">
   
     <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -73,10 +77,10 @@
 </header>
 
       <div class="outer">
-        <section id="main"><article id="post-4-17" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+        <section id="main"><article id="post-4-23" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
-    <a href="/2022/04/17/4-17/" class="article-date">
-  <time class="dt-published" datetime="2022-04-17T07:41:55.000Z" itemprop="datePublished">2022-04-17</time>
+    <a href="/2022/04/23/4-23/" class="article-date">
+  <time class="dt-published" datetime="2022-04-23T02:03:50.000Z" itemprop="datePublished">2022-04-23</time>
 </a>
     
   </div>
@@ -87,7 +91,7 @@
         
   
     <h1 class="p-name article-title" itemprop="headline name">
-      4-17
+      4-23
     </h1>
   
 
@@ -95,14 +99,33 @@
     
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <h3 id="weekly"><a href="#weekly" class="headerlink" title="weekly"></a>weekly</h3><ul>
-<li>dfs up down left and right, very complex, need to study.</li>
+        <h3 id="Docker-命令小结"><a href="#Docker-命令小结" class="headerlink" title="Docker 命令小结"></a>Docker 命令小结</h3><p><img src="C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20220423104942701.png" alt="image-20220423104942701"></p>
+<h4 id="帮助文档，All-命令-按照首字母排序"><a href="#帮助文档，All-命令-按照首字母排序" class="headerlink" title="帮助文档，All 命令, 按照首字母排序"></a>帮助文档，All 命令, 按照首字母排序</h4><p><img src="C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20220423105114054.png" alt="image-20220423105114054"></p>
+<p><img src="C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20220423105132861.png" alt="image-20220423105132861"></p>
+<p>之前 just 学习了最常用的容器和镜像的命令。</p>
+<h3 id="作业练习"><a href="#作业练习" class="headerlink" title="作业练习"></a>作业练习</h3><h4 id="作业一：docker安装Nginx"><a href="#作业一：docker安装Nginx" class="headerlink" title="作业一：docker安装Nginx"></a>作业一：docker安装Nginx</h4><ul>
+<li><pre><code class="shell">docker search nginx  # 去docker hub仓库搜索
+docker pull nginx     # download
+
+# 后台启动，赋名，使用3344访问默认端口80
+docker run -d --name nginx01 -p:3344:80 nginx
+curl localhost:3344
+
+# 1.进入容器
+docker exec -it nginx01 /bin/bash
+# 2.查看nginx的配置文件 nginx.conf
+whereis nginx
+cd /etc/nginx
+ls
+</code></pre>
+</li>
+<li></li>
 </ul>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2022/04/17/4-17/" data-id="cl22zfidi0000f4ucbst92nqn" data-title="4-17" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2022/04/23/4-23/" data-id="cl2br3y0p00009wuc3ujxaic4" data-title="4-23" class="article-share-link">Share</a>
       
       
       
@@ -112,19 +135,10 @@
     
 <nav id="article-nav">
   
-    <a href="/2022/04/19/4-19/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          4-19
-        
-      </div>
-    </a>
   
-  
-    <a href="/2022/04/16/4-16/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2022/04/22/4-22/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">4-16</div>
+      <div class="article-nav-title">4-22</div>
     </a>
   
 </nav>
