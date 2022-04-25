@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>4-25 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="作业三： 部署 es + kibana12345678910111213141516# es 暴露端口多！# es 十分耗内存# es 的数据一般要放到安全目录！挂载# --net somenetwork 网络配置，暂时不需要，删除# 下载启动elasticsearchdocker run -d --name elasticsearch -p 9200:9200 -p 9300:9300 -e &amp;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="4-25">
+<meta property="og:url" content="http://example.com/2022/04/25/4-25/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="作业三： 部署 es + kibana12345678910111213141516# es 暴露端口多！# es 十分耗内存# es 的数据一般要放到安全目录！挂载# --net somenetwork 网络配置，暂时不需要，删除# 下载启动elasticsearchdocker run -d --name elasticsearch -p 9200:9200 -p 9300:9300 -e &amp;">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="c:/Users/Administrator/AppData/Roaming/Typora/typora-user-images/image-20220425100521739.png">
+<meta property="og:image" content="c:/Users/Administrator/AppData/Roaming/Typora/typora-user-images/image-20220425103548039.png">
+<meta property="og:image" content="c:/Users/Administrator/AppData/Roaming/Typora/typora-user-images/image-20220425105944982.png">
+<meta property="article:published_time" content="2022-04-25T01:07:25.000Z">
+<meta property="article:modified_time" content="2022-04-25T08:07:00.811Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="c:/Users/Administrator/AppData/Roaming/Typora/typora-user-images/image-20220425100521739.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+<meta name="generator" content="Hexo 6.1.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-4-25" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2022/04/25/4-25/" class="article-date">
+  <time class="dt-published" datetime="2022-04-25T01:07:25.000Z" itemprop="datePublished">2022-04-25</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      4-25
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h4 id="作业三：-部署-es-kibana"><a href="#作业三：-部署-es-kibana" class="headerlink" title="作业三： 部署 es + kibana"></a>作业三： 部署 es + kibana</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">es 暴露端口多！</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">es 十分耗内存</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">es 的数据一般要放到安全目录！挂载</span></span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">--net somenetwork 网络配置，暂时不需要，删除</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">下载启动elasticsearch</span></span><br><span class="line">docker run -d --name elasticsearch -p 9200:9200 -p 9300:9300 -e &quot;discovery.type=single-node&quot; elasticsearch:7.6.2</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">查看端口</span></span><br><span class="line">curl localhost:9200</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">查看cpu memory状态</span></span><br><span class="line">docker stats  # elasticsearch 占了1.2G内存!</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">添加内存限制：修改配置文件， -e 环境配置修改</span></span><br><span class="line">docker run -d --name elasticsearch -p 9200:9200 -p 9300:9300 -e &quot;discovery.type=single-node&quot; -e ES_JAVA_OPTS=&quot;-Xms64m -Xms512m&quot; elasticsearch:7.6.2</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">kibana  是用来连接elasticsearch</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">容器间隔离，两容器 how to connect?</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20220425100521739.png" alt="image-20220425100521739"></p>
+<h3 id="Docker可视化"><a href="#Docker可视化" class="headerlink" title="Docker可视化"></a>Docker可视化</h3><p>– just learn or not use, 浅玩即可</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">下载安装 portainer</span></span><br><span class="line">docker run -d -p 8088:9000 --restart=always -v /var/run/docker.sock:/var/run/docker.sock --privileged=true portainer/portainer</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h3 id="Docker-底层架构"><a href="#Docker-底层架构" class="headerlink" title="Docker 底层架构"></a>Docker 底层架构</h3><p>bootfs(boot file system) 主要包含bootloader 和 kernel。类似于操作系统：Ubuntu， Centos等。</p>
+<p><img src="C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20220425103548039.png" alt="image-20220425103548039"></p>
+<p>一个OS的rootfs可以很小，只需包含基本命令+工具+程序库即可。因为底层使用的是宿主机Host的kernel。</p>
+<p>所以！！下载镜像的时候是一层一层下载的！！</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">下载镜像redis</span></span><br><span class="line">docker pull redis</span><br><span class="line">docker image inspect redis:latest</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p><img src="C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20220425105944982.png" alt="image-20220425105944982"></p>
+<p>!! Docker 的镜像都是只读的，容器被放到镜像的顶部用于可写层！</p>
+<p>所以顶层 -&gt; 容器层， 下面的层为镜像层！！</p>
+<blockquote>
+<p> How to 提交一个自己的镜像</p>
+</blockquote>
+<h3 id="commit-镜像"><a href="#commit-镜像" class="headerlink" title="commit 镜像"></a>commit 镜像</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">docker commit # 提交容器成为一个新的副本</span><br><span class="line"></span><br><span class="line">docker commit -m=&quot;提交的描述信息&quot; -a=&quot;作者&quot; 容器ID name</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">1.启动tomcat</span></span><br><span class="line">docker run -it -p 8080:8080 tomcat</span><br><span class="line">docker exec -it ID /bin/bash</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">2.copy file</span></span><br><span class="line">cp -r webapps.dist/* webapps</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">tips: 在防火墙中添加规则即可使用 8080 port</span></span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">3. 提交自己的镜像</span></span><br><span class="line">docker commit -a=&quot;yajun&quot; -m=&quot;add webapps application&quot; ID tomcat02:1.0</span><br><span class="line">docker images # 可发现存在tomcat02</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>想保存当前容器状态，可以通过commit提交来get一个新镜像。</p>
+</blockquote>
+<p>以上仅仅入门</p>
+<p>下面为docker精髓：</p>
+<ul>
+<li>容器数据卷</li>
+<li>DockerFile</li>
+<li>Docker 网络</li>
+</ul>
+<p>企业实战：</p>
+<ul>
+<li>Docker Compose    集群部署</li>
+<li>Docker Swarm         打包</li>
+<li>CI&#x2F;CD Jenkins           流水线</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2022/04/25/4-25/" data-id="cl2eh3g810000ckuchl0m4xa7" data-title="4-25" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2022/04/25/Docker-%E5%AE%B9%E5%99%A8%E6%95%B0%E6%8D%AE%E5%8D%B7/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Docker 容器数据卷
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2022/04/23/4-23/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">4-23</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/04/">April 2022</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2022/04/25/Docker-%E5%91%BD%E4%BB%A4%E6%80%BB%E7%BB%93/">Docker 命令总结</a>
+          </li>
+        
+          <li>
+            <a href="/2022/04/25/Docker-%E5%AE%B9%E5%99%A8%E6%95%B0%E6%8D%AE%E5%8D%B7/">Docker 容器数据卷</a>
+          </li>
+        
+          <li>
+            <a href="/2022/04/25/4-25/">4-25</a>
+          </li>
+        
+          <li>
+            <a href="/2022/04/23/4-23/">4-23</a>
+          </li>
+        
+          <li>
+            <a href="/2022/04/22/4-22/">4-22</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2022 John Doe<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>

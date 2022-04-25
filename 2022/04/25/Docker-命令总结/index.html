@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>Docker 命令总结 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="DockerIntroduction隔离：Docker的核心思想，打包装箱。 初始：容器化技术 容器技术之前，都使用虚拟机技术VMware，通过软件VMware可以虚拟出来一台或多台电脑。笨重。 docker，隔离，镜像（Core：4m+jdk+mysql），运行镜像即可。小巧。 虚拟机也属于虚拟化技术；Docker容器技术也是一种虚拟化技术。 Go:Docker基于Go开发，开源 Docker">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Docker 命令总结">
+<meta property="og:url" content="http://example.com/2022/04/25/Docker-%E5%91%BD%E4%BB%A4%E6%80%BB%E7%BB%93/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="DockerIntroduction隔离：Docker的核心思想，打包装箱。 初始：容器化技术 容器技术之前，都使用虚拟机技术VMware，通过软件VMware可以虚拟出来一台或多台电脑。笨重。 docker，隔离，镜像（Core：4m+jdk+mysql），运行镜像即可。小巧。 虚拟机也属于虚拟化技术；Docker容器技术也是一种虚拟化技术。 Go:Docker基于Go开发，开源 Docker">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="c:/Users/Administrator/AppData/Roaming/Typora/typora-user-images/image-20220420185011312.png">
+<meta property="og:image" content="c:/Users/Administrator/AppData/Roaming/Typora/typora-user-images/image-20220420190204680.png">
+<meta property="og:image" content="c:/Users/Administrator/AppData/Roaming/Typora/typora-user-images/image-20220423104942701.png">
+<meta property="og:image" content="c:/Users/Administrator/AppData/Roaming/Typora/typora-user-images/image-20220423105114054.png">
+<meta property="og:image" content="c:/Users/Administrator/AppData/Roaming/Typora/typora-user-images/image-20220423105132861.png">
+<meta property="og:image" content="c:/Users/Administrator/AppData/Roaming/Typora/typora-user-images/image-20220425100521739.png">
+<meta property="og:image" content="c:/Users/Administrator/AppData/Roaming/Typora/typora-user-images/image-20220425103548039.png">
+<meta property="og:image" content="c:/Users/Administrator/AppData/Roaming/Typora/typora-user-images/image-20220425105944982.png">
+<meta property="article:published_time" content="2022-04-25T08:36:35.000Z">
+<meta property="article:modified_time" content="2022-04-25T08:44:04.922Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="c:/Users/Administrator/AppData/Roaming/Typora/typora-user-images/image-20220420185011312.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+<meta name="generator" content="Hexo 6.1.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-Docker-命令总结" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2022/04/25/Docker-%E5%91%BD%E4%BB%A4%E6%80%BB%E7%BB%93/" class="article-date">
+  <time class="dt-published" datetime="2022-04-25T08:36:35.000Z" itemprop="datePublished">2022-04-25</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      Docker 命令总结
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h2 id="Docker"><a href="#Docker" class="headerlink" title="Docker"></a>Docker</h2><h3 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h3><h4 id="隔离："><a href="#隔离：" class="headerlink" title="隔离："></a>隔离：</h4><p>Docker的核心思想，打包装箱。</p>
+<h4 id="初始："><a href="#初始：" class="headerlink" title="初始："></a>初始：</h4><p>容器化技术</p>
+<p>容器技术之前，都使用虚拟机技术VMware，通过软件VMware可以虚拟出来一台或多台电脑。笨重。</p>
+<p>docker，隔离，镜像（Core：4m+jdk+mysql），运行镜像即可。小巧。</p>
+<p>虚拟机也属于虚拟化技术；Docker容器技术也是一种虚拟化技术。</p>
+<h4 id="Go"><a href="#Go" class="headerlink" title="Go:"></a>Go:</h4><p>Docker基于Go开发，开源</p>
+<h4 id="Docker-can-do-how？"><a href="#Docker-can-do-how？" class="headerlink" title="Docker can do how？"></a>Docker can do how？</h4><blockquote>
+<p>之前的虚拟机技术缺点：</p>
+<ul>
+<li>资源占用多</li>
+<li>冗余步骤多</li>
+<li>启动很慢</li>
+</ul>
+</blockquote>
+<blockquote>
+<p>容器化技术</p>
+<p>并非一个完整的操作系统</p>
+</blockquote>
+<p><img src="C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20220420185011312.png" alt="im0220420185011312"></p>
+<ul>
+<li>Docker应用直接运行在宿主机的内核，没有自己的内核</li>
+<li>每个容器间相互隔离</li>
+</ul>
+<blockquote>
+<p>DevOps (开发、运维)  中级程序员 –&gt; 高级程序员</p>
+</blockquote>
+<p><strong>应用更快速的交付和部署</strong></p>
+<p>Docker：打包镜像发布测试，一键运行</p>
+<p><strong>更便捷的升级和扩缩容</strong></p>
+<p>项目打包为一个镜像</p>
+<p><strong>更简单的系统运维</strong></p>
+<p>容器化之后，开发和测试环境高度一致。</p>
+<h4 id="Docker的基本组成"><a href="#Docker的基本组成" class="headerlink" title="Docker的基本组成"></a>Docker的基本组成</h4><p><img src="C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20220420190204680.png" alt="image-2220420190204680"></p>
+<ul>
+<li>镜像（image）：通过镜像可以创建多个容器。</li>
+<li>容器（container）：利用容器技术，Docker独立运行一个或一组应用。 基本命令：启动，停止，删除。</li>
+<li>仓库（repository）：存放镜像的地方。分为公有和私有仓库。 Docker Hub</li>
+</ul>
+<h3 id="安装Docker"><a href="#安装Docker" class="headerlink" title="安装Docker"></a>安装Docker</h3><blockquote>
+<p>环境查看</p>
+</blockquote>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">系统内核： 3.10</span></span><br><span class="line">[root@VM-24-6-centos /]# uname -r</span><br><span class="line">3.10.0-1160.45.1.el7.x86_64</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">系统版本</span></span><br><span class="line">[root@VM-24-6-centos /]# cat /etc/os-release</span><br><span class="line">NAME=&quot;CentOS Linux&quot;</span><br><span class="line">VERSION=&quot;7 (Core)&quot;</span><br><span class="line">ID=&quot;centos&quot;</span><br><span class="line">ID_LIKE=&quot;rhel fedora&quot;</span><br><span class="line">VERSION_ID=&quot;7&quot;</span><br><span class="line">PRETTY_NAME=&quot;CentOS Linux 7 (Core)&quot;</span><br><span class="line">ANSI_COLOR=&quot;0;31&quot;</span><br><span class="line">CPE_NAME=&quot;cpe:/o:centos:centos:7&quot;</span><br><span class="line">HOME_URL=&quot;https://www.centos.org/&quot;</span><br><span class="line">BUG_REPORT_URL=&quot;https://bugs.centos.org/&quot;</span><br><span class="line"></span><br><span class="line">CENTOS_MANTISBT_PROJECT=&quot;CentOS-7&quot;</span><br><span class="line">CENTOS_MANTISBT_PROJECT_VERSION=&quot;7&quot;</span><br><span class="line">REDHAT_SUPPORT_PRODUCT=&quot;centos&quot;</span><br><span class="line">REDHAT_SUPPORT_PRODUCT_VERSION=&quot;7&quot;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>Docker help document</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">1.卸载旧版本</span></span><br><span class="line">yum remove docker \</span><br><span class="line">                  docker-client \</span><br><span class="line">                  docker-client-latest \</span><br><span class="line">                  docker-common \</span><br><span class="line">                  docker-latest \</span><br><span class="line">                  docker-latest-logrotate \</span><br><span class="line">                  docker-logrotate \</span><br><span class="line">                  docker-engine</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">2.需要的安装包</span></span><br><span class="line">yum install -y yum-utils</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">3. 设置镜像仓库</span></span><br><span class="line">yum-config-manager \</span><br><span class="line">    --add-repo \</span><br><span class="line">    https://download.docker.com/linux/centos/docker-ce.repo</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">update 软件包索引 no <span class="keyword">do</span></span></span><br><span class="line">yum makecache fast</span><br><span class="line">    </span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">4. 安装docker相关内容 docker-ce 社区版 ee 企业版</span></span><br><span class="line">yum install docker-ce docker-ce-cli containerd.io</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">5. 启动docker</span></span><br><span class="line">systemctl start docker</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">6. 使用docker version查看是否安装成功</span></span><br><span class="line">docker version</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">7. hello world</span></span><br><span class="line">docker run hello-world</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">8. 查看下载的hello world 镜像 image</span></span><br><span class="line">docker images</span><br></pre></td></tr></table></figure>
+
+<h3 id="Docker-基本命令"><a href="#Docker-基本命令" class="headerlink" title="Docker 基本命令"></a>Docker 基本命令</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">docker images</span><br><span class="line">docker run -it centos /bin/bash # 启动并进入容器</span><br><span class="line">ls # 容器内目录，可以看出是一个小型操作系统</span><br><span class="line">bin  etc   lib	  lost+found  mnt  proc  run   srv  tmp  var</span><br><span class="line">dev  home  lib64  media       opt  root  sbin  sys  usr</span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash"><span class="comment"># 容器内和容器外完全隔离</span></span></span><br><span class="line"></span><br><span class="line">exit # 退出</span><br><span class="line">ctrl + P + Q # 容器退出但不停止</span><br><span class="line"></span><br><span class="line">docker ps # 查看正在运行的容器</span><br><span class="line">docker ps -a # 显示正在和结束的所有容器</span><br><span class="line">docker ps -aq # 只显示容器编号</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">删除容器</span></span><br><span class="line">docker rm 容器ID  # 删除指定的容器，不能删除正在运行的容器</span><br><span class="line">docker rm -f $(docker ps -aq)     # 强制全部删除</span><br><span class="line">docker ps -a -qlxargs docker rm   # 同上</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">start stop 容器</span></span><br><span class="line">docker start 容器id</span><br><span class="line">docker restart 容器id</span><br><span class="line">docker stop 容器id</span><br><span class="line">docker kill 容器id   # 如果stop报错，则使用</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h3 id="Docker-其他常用命令"><a href="#Docker-其他常用命令" class="headerlink" title="Docker 其他常用命令"></a>Docker 其他常用命令</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">后台启动容器</span></span><br><span class="line">docker run -d centos</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">查看日志</span></span><br><span class="line">docker logs -f -t --tail 容器ID</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">查看容器中进程信息</span></span><br><span class="line">docker top 4b6a809ac614</span><br><span class="line">UID                 PID                 PPID                C                   STIME               TTY                 TIME     </span><br><span class="line">root                24551               24529               0                   20:30               ?                   00:00:00 </span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">查看容器内部信息  镜像元数据</span></span><br><span class="line">docker inspect 4b6a809ac614</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">进入当前正在运行的容器</span></span><br><span class="line">docker exec -it 容器ID /bin/bash</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">容器内进程信息</span></span><br><span class="line">ps -ef</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">比<span class="built_in">exec</span>，不常用</span></span><br><span class="line">docker attach -it 容器ID /bin/bash</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">copy容器内文件到主机</span></span><br><span class="line">docker cp 容器ID:容器内路径 目的主机路径</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">1.在主机home下新建yajun.java,好像没什么用</span></span><br><span class="line">touch yajun.java</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">2.进入容器</span></span><br><span class="line">docker attach 容器ID</span><br><span class="line">cd home</span><br><span class="line">touch test.java</span><br><span class="line">exit</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">3.<span class="built_in">cp</span></span></span><br><span class="line">docker cp 1a71a29a58c1:/home/test.java /home</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="Docker-命令小结"><a href="#Docker-命令小结" class="headerlink" title="Docker 命令小结"></a>Docker 命令小结</h3><p><img src="C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20220423104942701.png" alt="image-20220423104942701"></p>
+<h4 id="帮助文档，All-命令-按照首字母排序"><a href="#帮助文档，All-命令-按照首字母排序" class="headerlink" title="帮助文档，All 命令, 按照首字母排序"></a>帮助文档，All 命令, 按照首字母排序</h4><p><img src="C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20220423105114054.png" alt="image-20220423105114054"></p>
+<p><img src="C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20220423105132861.png" alt="image-20220423105132861"></p>
+<p>之前 just 学习了最常用的容器和镜像的命令。</p>
+<p>现在访问公网IP可访问，下一步服务器使用自己的。</p>
+<p>图片访问不了，可以加入mySQL技术。</p>
+<h3 id="作业练习"><a href="#作业练习" class="headerlink" title="作业练习"></a>作业练习</h3><h4 id="作业一：docker安装Nginx"><a href="#作业一：docker安装Nginx" class="headerlink" title="作业一：docker安装Nginx"></a>作业一：docker安装Nginx</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">docker search nginx  # 去docker hub仓库搜索</span><br><span class="line">docker pull nginx 	# download</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">后台启动，赋名，使用3344访问默认端口80</span></span><br><span class="line">docker run -d --name nginx01 -p:3344:80 nginx</span><br><span class="line">curl localhost:3344</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">1.进入容器</span></span><br><span class="line">docker exec -it nginx01 /bin/bash</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">2.查看/修改nginx的配置文件 nginx.conf</span></span><br><span class="line">whereis nginx</span><br><span class="line">cd /etc/nginx</span><br><span class="line">ls</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">3.退出</span></span><br><span class="line">exit</span><br><span class="line">docker stop ID</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="作业二：docker安装tomcat"><a href="#作业二：docker安装tomcat" class="headerlink" title="作业二：docker安装tomcat"></a>作业二：docker安装tomcat</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">之前使用 run 后台下载并启动，停止容器之后，还是能查到容器</span></span><br><span class="line">docker rm -$(docker ps -aq)</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">-it --<span class="built_in">rm</span> 用完即删，一般用来测试,不建议</span></span><br><span class="line">docker run -it --rm tomcat:9.0</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">下载</span></span><br><span class="line">docker pull tomcat</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">启动运行</span></span><br><span class="line">docker images  # rm 为删除容器，镜像都还在，rmi 为删除镜像</span><br><span class="line">docker run -d -p 3355:8080 --name tomcat01 tomcat</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">进入容器</span></span><br><span class="line">docker exec -it tomcat01 /bin/bash</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">copy 文件</span></span><br><span class="line">cp -r webapps.dist/* webapps</span><br></pre></td></tr></table></figure>
+
+<h4 id="作业三：-部署-es-kibana"><a href="#作业三：-部署-es-kibana" class="headerlink" title="作业三： 部署 es + kibana"></a>作业三： 部署 es + kibana</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">es 暴露端口多！</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">es 十分耗内存</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">es 的数据一般要放到安全目录！挂载</span></span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">--net somenetwork 网络配置，暂时不需要，删除</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">下载启动elasticsearch</span></span><br><span class="line">docker run -d --name elasticsearch -p 9200:9200 -p 9300:9300 -e &quot;discovery.type=single-node&quot; elasticsearch:7.6.2</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">查看端口</span></span><br><span class="line">curl localhost:9200</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">查看cpu memory状态</span></span><br><span class="line">docker stats  # elasticsearch 占了1.2G内存!</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">添加内存限制：修改配置文件， -e 环境配置修改</span></span><br><span class="line">docker run -d --name elasticsearch -p 9200:9200 -p 9300:9300 -e &quot;discovery.type=single-node&quot; -e ES_JAVA_OPTS=&quot;-Xms64m -Xms512m&quot; elasticsearch:7.6.2</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">kibana  是用来连接elasticsearch</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">容器间隔离，两容器 how to connect?</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20220425100521739.png" alt="image-20220425100521739"></p>
+<h3 id="Docker可视化"><a href="#Docker可视化" class="headerlink" title="Docker可视化"></a>Docker可视化</h3><p>– just learn or not use, 浅玩即可</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">下载安装 portainer</span></span><br><span class="line">docker run -d -p 8088:9000 --restart=always -v /var/run/docker.sock:/var/run/docker.sock --privileged=true portainer/portainer</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h3 id="Docker-底层架构"><a href="#Docker-底层架构" class="headerlink" title="Docker 底层架构"></a>Docker 底层架构</h3><p>bootfs(boot file system) 主要包含bootloader 和 kernel。类似于操作系统：Ubuntu， Centos等。</p>
+<p><img src="C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20220425103548039.png" alt="image-20220425103548039"></p>
+<p>一个OS的rootfs可以很小，只需包含基本命令+工具+程序库即可。因为底层使用的是宿主机Host的kernel。</p>
+<p>所以！！下载镜像的时候是一层一层下载的！！</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">下载镜像redis</span></span><br><span class="line">docker pull redis</span><br><span class="line">docker image inspect redis:latest</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p><img src="C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20220425105944982.png" alt="image-20220425105944982"></p>
+<p>!! Docker 的镜像都是只读的，容器被放到镜像的顶部用于可写层！</p>
+<p>所以顶层 -&gt; 容器层， 下面的层为镜像层！！</p>
+<blockquote>
+<p> How to 提交一个自己的镜像</p>
+</blockquote>
+<h3 id="commit-镜像"><a href="#commit-镜像" class="headerlink" title="commit 镜像"></a>commit 镜像</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">docker commit # 提交容器成为一个新的副本</span><br><span class="line"></span><br><span class="line">docker commit -m=&quot;提交的描述信息&quot; -a=&quot;作者&quot; 容器ID name</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">1.启动tomcat</span></span><br><span class="line">docker run -it -p 8080:8080 tomcat</span><br><span class="line">docker exec -it ID /bin/bash</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">2.copy file</span></span><br><span class="line">cp -r webapps.dist/* webapps</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">tips: 在防火墙中添加规则即可使用 8080 port</span></span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">3. 提交自己的镜像</span></span><br><span class="line">docker commit -a=&quot;yajun&quot; -m=&quot;add webapps application&quot; ID tomcat02:1.0</span><br><span class="line">docker images # 可发现存在tomcat02</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>想保存当前容器状态，可以通过commit提交来get一个新镜像。</p>
+</blockquote>
+<p>以上仅仅入门</p>
+<p>下面为docker精髓：</p>
+<ul>
+<li>容器数据卷</li>
+<li>DockerFile</li>
+<li>Docker 网络</li>
+</ul>
+<p>企业实战：</p>
+<ul>
+<li>Docker Compose    集群部署</li>
+<li>Docker Swarm         打包</li>
+<li>CI&#x2F;CD Jenkins           流水线</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2022/04/25/Docker-%E5%91%BD%E4%BB%A4%E6%80%BB%E7%BB%93/" data-id="cl2eh3g840001ckucc5hq2x84" data-title="Docker 命令总结" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2022/04/25/Docker-%E5%AE%B9%E5%99%A8%E6%95%B0%E6%8D%AE%E5%8D%B7/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Docker 容器数据卷</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/04/">April 2022</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2022/04/25/Docker-%E5%91%BD%E4%BB%A4%E6%80%BB%E7%BB%93/">Docker 命令总结</a>
+          </li>
+        
+          <li>
+            <a href="/2022/04/25/Docker-%E5%AE%B9%E5%99%A8%E6%95%B0%E6%8D%AE%E5%8D%B7/">Docker 容器数据卷</a>
+          </li>
+        
+          <li>
+            <a href="/2022/04/25/4-25/">4-25</a>
+          </li>
+        
+          <li>
+            <a href="/2022/04/23/4-23/">4-23</a>
+          </li>
+        
+          <li>
+            <a href="/2022/04/22/4-22/">4-22</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2022 John Doe<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>
