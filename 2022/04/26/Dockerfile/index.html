@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>Dockerfile | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="初识 DockerfileDockerfile 是用来构建 docker 镜像的构建文件！命令脚本！ 镜像是分层的，脚本里有多个命令，一个命令就是一层。 123456789101112131415161718192021222324252627282930mkdir dockerfile_test_volume# 写脚本，构建docker镜像，只有容器名，所以是匿名挂载vim dockerfile">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Dockerfile">
+<meta property="og:url" content="http://example.com/2022/04/26/Dockerfile/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="初识 DockerfileDockerfile 是用来构建 docker 镜像的构建文件！命令脚本！ 镜像是分层的，脚本里有多个命令，一个命令就是一层。 123456789101112131415161718192021222324252627282930mkdir dockerfile_test_volume# 写脚本，构建docker镜像，只有容器名，所以是匿名挂载vim dockerfile">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="c:/Users/Administrator/AppData/Roaming/Typora/typora-user-images/image-20220426101623921.png">
+<meta property="article:published_time" content="2022-04-26T01:09:43.000Z">
+<meta property="article:modified_time" content="2022-04-26T10:44:09.741Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="c:/Users/Administrator/AppData/Roaming/Typora/typora-user-images/image-20220426101623921.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+<meta name="generator" content="Hexo 6.1.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-Dockerfile" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2022/04/26/Dockerfile/" class="article-date">
+  <time class="dt-published" datetime="2022-04-26T01:09:43.000Z" itemprop="datePublished">2022-04-26</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      Dockerfile
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h3 id="初识-Dockerfile"><a href="#初识-Dockerfile" class="headerlink" title="初识 Dockerfile"></a>初识 Dockerfile</h3><p>Dockerfile 是用来构建 docker 镜像的构建文件！命令脚本！</p>
+<p>镜像是分层的，脚本里有多个命令，一个命令就是一层。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">mkdir dockerfile_test_volume</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">写脚本，构建docker镜像，只有容器名，所以是匿名挂载</span></span><br><span class="line">vim dockerfile1</span><br><span class="line"></span><br><span class="line">FROM centos</span><br><span class="line"></span><br><span class="line">VOLUME [&quot;volume01&quot;,&quot;volume02&quot;]</span><br><span class="line"></span><br><span class="line">CMD echo &quot;------end--------&quot;</span><br><span class="line">CMD /bin/bash</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">查看文件内容</span></span><br><span class="line">cat dockerfile1</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">建造镜像</span></span><br><span class="line">docker build -f dockerfile1 -t yajun/centos .</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">启动镜像,启动容器</span></span><br><span class="line">docker run -it 12e7c1e19f27 /bin/bash</span><br><span class="line">cd volume01</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">创建文件</span></span><br><span class="line">touch container.exe</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">查看匿名挂载到的宿主机目录</span></span><br><span class="line">docker inspect 容器ID</span><br><span class="line">&quot;Source&quot;: &quot;/var/lib/docker/volumes/d4db7657c5fc8f6fd2878d0f9499d62054397766522e27f31d8b435f3b405b77/_data&quot;</span><br><span class="line">cd /var/lib/docker/volumes/d4db7657c5fc8f6fd2878d0f9499d62054397766522e27f31d8b435f3b405b77/_data</span><br><span class="line">ls</span><br><span class="line">container.exe</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h3 id="数据卷容器"><a href="#数据卷容器" class="headerlink" title="数据卷容器"></a>数据卷容器</h3><p>多个MySQL 同步数据    –volumes-from</p>
+<p>两个容器共用一份数据，指针指向同一块存储区域，且都是硬链接.</p>
+<p><img src="C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20220426101623921.png" alt="image-20220426101623921"></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">运行 进入容器</span></span><br><span class="line">docker run -it --name docker01 yajun/centos</span><br><span class="line">ls -l</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">ctrl P Q</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">进入容器2,子容器</span></span><br><span class="line">docker run -it --name docker02 --volumes-from docker01 yajun/centos</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">into 容器1</span></span><br><span class="line"></span><br><span class="line">cd volume01</span><br><span class="line">touch docker01</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">into 容器2</span></span><br><span class="line">cd volume01</span><br><span class="line">ls</span><br></pre></td></tr></table></figure>
+
+
+
+<p>tips：两容器只共享 -v 后的单个文件</p>
+<h3 id="Dockerfile-介绍"><a href="#Dockerfile-介绍" class="headerlink" title="Dockerfile 介绍"></a>Dockerfile 介绍</h3><p>dockerfile 核心是用来构建docker镜像的文件！ 命令参数脚本</p>
+<p>构建步骤：</p>
+<ul>
+<li>编写一个dockerfile文件</li>
+<li>docker build 构建成为一个镜像</li>
+<li>docker run 运行镜像</li>
+<li>docker push 发布镜像（DockerHub）</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2022/04/26/Dockerfile/" data-id="cl2g0u2r10000g8uc2l7p0o0s" data-title="Dockerfile" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2022/04/25/Docker-%E5%91%BD%E4%BB%A4%E6%80%BB%E7%BB%93/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Docker 命令总结</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/04/">April 2022</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2022/04/26/Dockerfile/">Dockerfile</a>
+          </li>
+        
+          <li>
+            <a href="/2022/04/25/Docker-%E5%91%BD%E4%BB%A4%E6%80%BB%E7%BB%93/">Docker 命令总结</a>
+          </li>
+        
+          <li>
+            <a href="/2022/04/25/Docker-%E5%AE%B9%E5%99%A8%E6%95%B0%E6%8D%AE%E5%8D%B7/">Docker 容器数据卷</a>
+          </li>
+        
+          <li>
+            <a href="/2022/04/25/4-25/">4-25</a>
+          </li>
+        
+          <li>
+            <a href="/2022/04/23/4-23/">4-23</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2022 John Doe<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>
