@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.1.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" integrity="sha256-DfWjNxDkM94fVBWx1H5BMMp0Zq7luBlV8QRcSES7s+0=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.11.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="前言Go特性：  中和 并发编程 支持 数据抽象 和 面向对象编程 集成 自动垃圾收集技术  Go语言项目Go：  拥有自动垃圾回收、一个包系统、函数作为一等公民、词法作用域、系统调用接口、只读的UTF8字符串  提供了基于CSP的并发特性支持  没有隐式的数值转换，没有构造函数和析构函数，没有运算符重载，没有默认参数，也没有继承，没有泛型，没有异常，没有宏，没有函数修饰，更没有线程局部存储">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Go语言圣经学习">
+<meta property="og:url" content="http://example.com/2022/05/04/Go%E8%AF%AD%E8%A8%80%E5%9C%A3%E7%BB%8F%E5%AD%A6%E4%B9%A0/index.html">
+<meta property="og:site_name" content="BLOG">
+<meta property="og:description" content="前言Go特性：  中和 并发编程 支持 数据抽象 和 面向对象编程 集成 自动垃圾收集技术  Go语言项目Go：  拥有自动垃圾回收、一个包系统、函数作为一等公民、词法作用域、系统调用接口、只读的UTF8字符串  提供了基于CSP的并发特性支持  没有隐式的数值转换，没有构造函数和析构函数，没有运算符重载，没有默认参数，也没有继承，没有泛型，没有异常，没有宏，没有函数修饰，更没有线程局部存储">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2022-05-04T12:35:54.000Z">
+<meta property="article:modified_time" content="2022-05-05T09:14:31.630Z">
+<meta property="article:author" content="李亚君">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://example.com/2022/05/04/Go%E8%AF%AD%E8%A8%80%E5%9C%A3%E7%BB%8F%E5%AD%A6%E4%B9%A0/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"http://example.com/2022/05/04/Go%E8%AF%AD%E8%A8%80%E5%9C%A3%E7%BB%8F%E5%AD%A6%E4%B9%A0/","path":"2022/05/04/Go语言圣经学习/","title":"Go语言圣经学习"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>Go语言圣经学习 | BLOG</title>
+  
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">BLOG</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Go%E8%AF%AD%E8%A8%80%E9%A1%B9%E7%9B%AE"><span class="nav-number">1.1.</span> <span class="nav-text">Go语言项目</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9C%AC%E4%B9%A6%E7%BB%84%E7%BB%87"><span class="nav-number">1.2.</span> <span class="nav-text">本书组织</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%A5%E9%97%A8"><span class="nav-number">2.</span> <span class="nav-text">入门</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Hello-world"><span class="nav-number">2.1.</span> <span class="nav-text">Hello, world!</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="李亚君"
+      src="/images/h.jpg">
+  <p class="site-author-name" itemprop="name">李亚君</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">25</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+  </nav>
+</div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/05/04/Go%E8%AF%AD%E8%A8%80%E5%9C%A3%E7%BB%8F%E5%AD%A6%E4%B9%A0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/h.jpg">
+      <meta itemprop="name" content="李亚君">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="BLOG">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="Go语言圣经学习 | BLOG">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Go语言圣经学习
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2022-05-04 20:35:54" itemprop="dateCreated datePublished" datetime="2022-05-04T20:35:54+08:00">2022-05-04</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">Edited on</span>
+      <time title="Modified: 2022-05-05 17:14:31" itemprop="dateModified" datetime="2022-05-05T17:14:31+08:00">2022-05-05</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>Go特性：</p>
+<ul>
+<li>中和 并发编程</li>
+<li>支持 数据抽象 和 面向对象编程</li>
+<li>集成 自动垃圾收集技术</li>
+</ul>
+<h3 id="Go语言项目"><a href="#Go语言项目" class="headerlink" title="Go语言项目"></a>Go语言项目</h3><p>Go：</p>
+<ul>
+<li><p>拥有自动垃圾回收、一个包系统、函数作为一等公民、词法作用域、系统调用接口、只读的UTF8字符串</p>
+</li>
+<li><p>提供了基于CSP的并发特性支持</p>
+</li>
+<li><p>没有隐式的数值转换，没有构造函数和析构函数，没有运算符重载，没有默认参数，也没有继承，没有泛型，没有异常，没有宏，没有函数修饰，更没有线程局部存储</p>
+</li>
+</ul>
+<h3 id="本书组织"><a href="#本书组织" class="headerlink" title="本书组织"></a>本书组织</h3><ol>
+<li><p>入门：读写文件、文本格式化、创建图像、网络客户端和服务器通讯</p>
+</li>
+<li><p>基本元素结构、变量、新类型定义、包和文件、以及作用域</p>
+</li>
+<li><p>数字、布尔值、字符串和常量，并演示了如何显示和处理Unicode字符</p>
+</li>
+<li><p>复合类型，从简单的数组、字典、切片到动态列表</p>
+</li>
+<li><p>函数，并讨论了错误处理、panic和recover，还有defer语句</p>
+<blockquote>
+<p>之后是Go语言特有的：方法、接口、并发、包、测试和反射等语言特性</p>
+</blockquote>
+</li>
+<li><p>方法</p>
+</li>
+<li><p>接口</p>
+</li>
+<li><p>并发编程：基于顺序通信进程（CSP）概念的并发编程，使用goroutines和channels处理并发编程</p>
+</li>
+<li><p>传统并发编程</p>
+</li>
+<li><p>包机制</p>
+</li>
+<li><p>单元测试</p>
+</li>
+<li><p>反射</p>
+</li>
+</ol>
+<h2 id="入门"><a href="#入门" class="headerlink" title="入门"></a>入门</h2><h3 id="Hello-world"><a href="#Hello-world" class="headerlink" title="Hello, world!"></a>Hello, world!</h3><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> <span class="string">&quot;fmt&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">	fmt.Println(<span class="string">&quot;Hello, world!&quot;</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">go run helloworld.go</span><br><span class="line"><span class="comment"># or</span></span><br><span class="line">go build helloworld.go	<span class="comment"># 生成 .exe</span></span><br><span class="line">.\helloworld.exe</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">s := <span class="string">&quot;&quot;</span></span><br><span class="line"><span class="keyword">var</span> s <span class="type">string</span>	<span class="comment">// 尽量使用该形式</span></span><br><span class="line"></span><br><span class="line">fmt.Println(os.Args)</span><br><span class="line"><span class="comment">// [C:\Users\Administrator\AppData\Local\Temp\go-build1845431712\b001\exe\echo2.exe]</span></span><br><span class="line"></span><br><span class="line">start = time.Now()</span><br><span class="line">fmt.Println(strings.Join(os.Args[<span class="number">0</span>:], <span class="string">&quot;?&quot;</span>))</span><br><span class="line">fmt.Println(time.Since(start).Seconds())</span><br><span class="line"><span class="comment">// Output: 0  没花时间?</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2022/05/04/%E5%A4%9A%E7%BD%91%E5%85%B3%E5%B7%A8%E5%9E%8B%E6%98%9F%E5%BA%A7%E7%BD%91%E7%BB%9C%E4%B8%AD%E7%9A%84%E5%88%86%E5%B8%83%E5%BC%8F%E6%8B%A5%E5%A1%9E%E9%81%BF%E5%85%8D%E8%B7%AF%E7%94%B1%E7%AE%97%E6%B3%95/" rel="prev" title="多网关巨型星座网络中的分布式拥塞避免路由算法">
+                  <i class="fa fa-chevron-left"></i> 多网关巨型星座网络中的分布式拥塞避免路由算法
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2022/05/14/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8B-Database-SQL-%E4%B8%8E-GORM-%E5%AE%9E%E8%B7%B5/" rel="next" title="设计模式之 Database/SQL 与 GORM 实践">
+                  设计模式之 Database/SQL 与 GORM 实践 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">李亚君</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>
