@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.1.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" integrity="sha256-DfWjNxDkM94fVBWx1H5BMMp0Zq7luBlV8QRcSES7s+0=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.11.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="Go语言编程，常用框架，数据库，对象存储 clone 代码仓库demo： RaymondCode&#x2F;simple-demo (github.com) 下载安卓模拟器，下载极简抖音apk： https:&#x2F;&#x2F;bytedance.feishu.cn&#x2F;docs&#x2F;doccnM9KkBAdyDhg8qaeGlIz7S7 设置网络 配置手动代理 ip 为 主机ip 编译项目： 1go build mai">
+<meta property="og:type" content="article">
+<meta property="og:title" content="简版抖音">
+<meta property="og:url" content="http://example.com/2022/05/15/%E7%AE%80%E7%89%88%E6%8A%96%E9%9F%B3/%E7%AE%80%E7%89%88%E6%8A%96%E9%9F%B3/index.html">
+<meta property="og:site_name" content="BLOG">
+<meta property="og:description" content="Go语言编程，常用框架，数据库，对象存储 clone 代码仓库demo： RaymondCode&#x2F;simple-demo (github.com) 下载安卓模拟器，下载极简抖音apk： https:&#x2F;&#x2F;bytedance.feishu.cn&#x2F;docs&#x2F;doccnM9KkBAdyDhg8qaeGlIz7S7 设置网络 配置手动代理 ip 为 主机ip 编译项目： 1go build mai">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://example.com/AppData/Roaming/Typora/typora-user-images/image-20220516163841915.png">
+<meta property="og:image" content="http://example.com/AppData/Roaming/Typora/typora-user-images/image-20220516163825113.png">
+<meta property="og:image" content="http://example.com/AppData/Roaming/Typora/typora-user-images/image-20220516164023898.png">
+<meta property="article:published_time" content="2022-05-15T02:15:00.000Z">
+<meta property="article:modified_time" content="2022-05-16T13:05:16.262Z">
+<meta property="article:author" content="李亚君">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/AppData/Roaming/Typora/typora-user-images/image-20220516163841915.png">
+
+
+<link rel="canonical" href="http://example.com/2022/05/15/%E7%AE%80%E7%89%88%E6%8A%96%E9%9F%B3/%E7%AE%80%E7%89%88%E6%8A%96%E9%9F%B3/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"http://example.com/2022/05/15/%E7%AE%80%E7%89%88%E6%8A%96%E9%9F%B3/%E7%AE%80%E7%89%88%E6%8A%96%E9%9F%B3/","path":"2022/05/15/简版抖音/简版抖音/","title":"简版抖音"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>简版抖音 | BLOG</title>
+  
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">BLOG</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-overview-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="李亚君"
+      src="/images/h.jpg">
+  <p class="site-author-name" itemprop="name">李亚君</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">27</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+  </nav>
+</div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/05/15/%E7%AE%80%E7%89%88%E6%8A%96%E9%9F%B3/%E7%AE%80%E7%89%88%E6%8A%96%E9%9F%B3/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/h.jpg">
+      <meta itemprop="name" content="李亚君">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="BLOG">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="简版抖音 | BLOG">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          简版抖音
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2022-05-15 10:15:00" itemprop="dateCreated datePublished" datetime="2022-05-15T10:15:00+08:00">2022-05-15</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">Edited on</span>
+      <time title="Modified: 2022-05-16 21:05:16" itemprop="dateModified" datetime="2022-05-16T21:05:16+08:00">2022-05-16</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p>Go语言编程，常用框架，数据库，对象存储</p>
+<p>clone 代码仓库demo： <a href="https://link.juejin.cn/?target=https://github.com/RaymondCode/simple-demo">RaymondCode&#x2F;simple-demo (github.com)</a></p>
+<p>下载安卓模拟器，下载极简抖音apk： <a target="_blank" rel="noopener" href="https://bytedance.feishu.cn/docs/doccnM9KkBAdyDhg8qaeGlIz7S7">https://bytedance.feishu.cn/docs/doccnM9KkBAdyDhg8qaeGlIz7S7</a></p>
+<p>设置网络</p>
+<p>配置手动代理 ip 为 主机ip</p>
+<p>编译项目：</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">go</span> build main.<span class="keyword">go</span> router.<span class="keyword">go</span></span><br></pre></td></tr></table></figure>
+
+<p>执行main.exe</p>
+<p>打开模拟器中的抖音app</p>
+<p>接口地址：<a target="_blank" rel="noopener" href="https://www.apifox.cn/apidoc/shared-8cc50618-0da6-4d5e-a398-76f3b8f766c5/api-18901444">https://www.apifox.cn/apidoc/shared-8cc50618-0da6-4d5e-a398-76f3b8f766c5/api-18901444</a></p>
+<p><strong>投稿：</strong></p>
+<p>POST &#x2F;douyin&#x2F;publish&#x2F;action</p>
+<p><img src="/../../../../../../AppData/Roaming/Typora/typora-user-images/image-20220516163841915.png" alt="image-20220516163841915"></p>
+<p><strong>访问发布列表：</strong></p>
+<p>GET &#x2F;douyin&#x2F;publish&#x2F;list</p>
+<p><img src="/../../../../../AppData/Roaming/Typora/typora-user-images/image-20220516163825113.png" alt="image-20220516163825113"></p>
+<p><strong>执行结果：</strong></p>
+<p><img src="/../../../../../AppData/Roaming/Typora/typora-user-images/image-20220516164023898.png" alt="image-20220516164023898"></p>
+<p>看一下代码内部怎么执行的这两个接口</p>
+<p>main.go</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main	<span class="comment">// main 中有 main 包调用  wrong！</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">	<span class="string">&quot;github.com/gin-gonic/gin&quot;</span>	<span class="comment">// 使用 gin 框架</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">	r := gin.Default()	<span class="comment">// gin 默认配置</span></span><br><span class="line"></span><br><span class="line">    initRouter(r)	<span class="comment">// 调用 router.go 中的 initRouter() 函数</span></span><br><span class="line"></span><br><span class="line">	r.Run() <span class="comment">// listen and serve on 0.0.0.0:8080 (for windows &quot;localhost:8080&quot;)</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>router.go</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main	<span class="comment">// 也有！！</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">	<span class="string">&quot;github.com/RaymondCode/simple-demo/controller&quot;</span>	<span class="comment">// ?? 同级目录下有 control ，为什么此处还有调用</span></span><br><span class="line">	<span class="string">&quot;github.com/gin-gonic/gin&quot;</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">initRouter</span><span class="params">(r *gin.Engine)</span></span> &#123;	<span class="comment">// </span></span><br><span class="line">	<span class="comment">// public directory is used to serve static resources</span></span><br><span class="line">	r.Static(<span class="string">&quot;/static&quot;</span>, <span class="string">&quot;./public&quot;</span>)</span><br><span class="line"></span><br><span class="line">	apiRouter := r.Group(<span class="string">&quot;/douyin&quot;</span>)</span><br><span class="line"></span><br><span class="line">	<span class="comment">// basic apis</span></span><br><span class="line">	apiRouter.GET(<span class="string">&quot;/feed/&quot;</span>, controller.Feed)</span><br><span class="line">	apiRouter.GET(<span class="string">&quot;/user/&quot;</span>, controller.UserInfo)</span><br><span class="line">	apiRouter.POST(<span class="string">&quot;/user/register/&quot;</span>, controller.Register)</span><br><span class="line">	apiRouter.POST(<span class="string">&quot;/user/login/&quot;</span>, controller.Login)</span><br><span class="line">	apiRouter.POST(<span class="string">&quot;/publish/action/&quot;</span>, controller.Publish)</span><br><span class="line">	apiRouter.GET(<span class="string">&quot;/publish/list/&quot;</span>, controller.PublishList)</span><br><span class="line"></span><br><span class="line">	<span class="comment">// extra apis - I</span></span><br><span class="line">	apiRouter.POST(<span class="string">&quot;/favorite/action/&quot;</span>, controller.FavoriteAction)</span><br><span class="line">	apiRouter.GET(<span class="string">&quot;/favorite/list/&quot;</span>, controller.FavoriteList)</span><br><span class="line">	apiRouter.POST(<span class="string">&quot;/comment/action/&quot;</span>, controller.CommentAction)</span><br><span class="line">	apiRouter.GET(<span class="string">&quot;/comment/list/&quot;</span>, controller.CommentList)</span><br><span class="line"></span><br><span class="line">	<span class="comment">// extra apis - II</span></span><br><span class="line">	apiRouter.POST(<span class="string">&quot;/relation/action/&quot;</span>, controller.RelationAction)</span><br><span class="line">	apiRouter.GET(<span class="string">&quot;/relation/follow/list/&quot;</span>, controller.FollowList)</span><br><span class="line">	apiRouter.GET(<span class="string">&quot;/relation/follower/list/&quot;</span>, controller.FollowerList)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2022/05/14/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8B-Database-SQL-%E4%B8%8E-GORM-%E5%AE%9E%E8%B7%B5/" rel="prev" title="设计模式之 Database/SQL 与 GORM 实践">
+                  <i class="fa fa-chevron-left"></i> 设计模式之 Database/SQL 与 GORM 实践
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2022/05/15/%E7%AE%80%E7%89%88%E6%8A%96%E9%9F%B3/" rel="next" title="简版抖音">
+                  简版抖音 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">李亚君</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>
