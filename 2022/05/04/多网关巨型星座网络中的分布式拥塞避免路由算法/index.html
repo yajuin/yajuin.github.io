@@ -1,27 +1,412 @@
 <!DOCTYPE html>
 <html lang="en">
-{{ partial("_partial/head") }}
-<body style="display: flex; flex-direction: column; min-height: 100vh;">
-{{ partial("_partial/header") }}
 
- {{ partial("_partial/announcement-js", {item: page}) }}
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="keywords" content="" />
+  <meta name="author" content="李亚君" />
+  <meta name="description" content="" />
+  
+  
+  <title>
+    
+      多网关巨型星座网络中的分布式拥塞避免路由算法 
+      
+      
+    
+  </title>
 
-  <!-- Primary Page Layout
-  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-  <div style="flex: 1;">
-      {{ body }}
+  
+    <link rel="apple-touch-icon" href="/images/favicon.png">
+    <link rel="icon" href="/images/favicon.png">
+  
+
+  <!-- Raleway-Font -->
+  <link href="https://fonts.googleapis.com/css?family=Montserrat|Roboto:400,400italic,600|Roboto+Mono" rel="stylesheet">
+
+  <!-- hexo site css -->
+  
+<link rel="stylesheet" href="/css/base.css">
+<link rel="stylesheet" href="/css/common.css">
+<link rel="stylesheet" href="/iconfont/iconfont.css">
+
+
+  
+
+  
+    
+<link rel="stylesheet" href="/css/post.css">
+
+  
+
+  <!-- jquery3.3.1 -->
+  <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+
+  <!-- fancybox -->
+  <link href="https://cdn.bootcss.com/fancybox/3.5.2/jquery.fancybox.min.css" rel="stylesheet">
+  <script async src="https://cdn.bootcss.com/fancybox/3.5.2/jquery.fancybox.min.js"></script>
+  
+<script src="/js/fancybox.js"></script>
+
+
+<meta name="generator" content="Hexo 6.1.0"></head>
+
+
+  <body>
+    <div id="app">
+      <div class="header">
+  <a href="/">LEEDOM</a>
+</div>
+
+
+      <p class="links">
+  
+    <a title="archives" target="" href="/archives/">
+      <i class="iconfont icon-bookmark"></i>
+    </a>
+  
+    <a title="github" target="_blank" href="https://github.com/leedom92/hexo-theme-leedom">
+      <i class="iconfont icon-github"></i>
+    </a>
+  
+    <a title="email" target="" href="">
+      <i class="iconfont icon-envelope"></i>
+    </a>
+  
+    <a title="facebook" target="" href="">
+      <i class="iconfont icon-facebooksquare"></i>
+    </a>
+  
+    <a title="twitter" target="" href="">
+      <i class="iconfont icon-twitter"></i>
+    </a>
+  
+    <a title="wechat" target="" href="">
+      <i class="iconfont icon-wechat"></i>
+    </a>
+  
+    <a title="weibo" target="" href="">
+      <i class="iconfont icon-weibo"></i>
+    </a>
+  
+    <a title="rss" target="_blank" href="/atom.xml">
+      <i class="iconfont icon-rss"></i>
+    </a>
+  
+</p>
+
+
+      <div class="main">
+        <!-- 文章详情页，展示文章具体内容，url形式：https://yoursite/文章标题/ -->
+<!-- 同时为「标签tag」，「朋友friend」，「分类categories」，「关于about」页面的承载页面，具体展示取决于page.type -->
+
+<!-- LaTex Display -->
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script type="text/javascript" id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
+</script>
+<script>
+  MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']]
+    }
+  };
+</script>
+
+<div class="post">
+  <h3 class="date">
+    May 04, 2022
+  </h3>
+  <h1>
+    多网关巨型星座网络中的分布式拥塞避免路由算法
+  </h1>
+  <div class="content markdown-body">
+    <h1 id="分布式拥塞避免路由算法"><a href="#分布式拥塞避免路由算法" class="headerlink" title="分布式拥塞避免路由算法"></a>分布式拥塞避免路由算法</h1><p>路由算法分为：</p>
+<ol>
+<li><p><strong>网关分配</strong></p>
+</li>
+<li><p><strong>路径候选区域划分</strong></p>
+</li>
+<li><p><strong>最优路径生成(LSP)</strong></p>
+<blockquote>
+<p>LSP: 长边优先级策略，goal：路径搜索空间最大化</p>
+<p>可解决路径生存问题 -&gt; 避免拥塞</p>
+</blockquote>
+</li>
+</ol>
+<p>巨型网络：单星覆盖小 -&gt; 持续时间短 -&gt; 切换频繁，跳数多</p>
+<p>网关：卫星网络 和 地面网络 的接口</p>
+<blockquote>
+<p>与网关非直连的卫星，应有最优网关分配。运行时，会有分配网关切换。</p>
+</blockquote>
+<ol>
+<li>地空混合网络中 网关分配&amp;路由算法 相关工作</li>
+<li>MCNMG 网络模型</li>
+<li>路由算法 三个过程</li>
+<li>仿真</li>
+</ol>
+<h2 id="相关工作"><a href="#相关工作" class="headerlink" title="相关工作"></a>相关工作</h2><p>路由算法：网关分配&amp;拥塞避免</p>
+<h3 id="网关分配"><a href="#网关分配" class="headerlink" title="网关分配"></a>网关分配</h3><p>网关选择问题：基于BGP-4的边界网关协议，网关布局问题     </p>
+<blockquote>
+<p>problem: 针对地面段的网关选择, not 空间段</p>
+</blockquote>
+<p>空间段：网关选择是从一组<strong>候选网关</strong>中确定最佳网关</p>
+<p>在卫星网关已经确定的情况下，如何将<strong>卫星节点分配</strong>到最优网关以及网关切换</p>
+<h3 id="拥塞避免路由算法"><a href="#拥塞避免路由算法" class="headerlink" title="拥塞避免路由算法"></a>拥塞避免路由算法</h3><p>经典分布式算法：</p>
+<p>数据报路由算法（虚拟节点 静态化；主备方向防拥塞）；</p>
+<p>基于优先级的自适应路由（考虑ISL的过去利用率和缓存信息 将流量分配给路径）；</p>
+<p>显式负载均衡（卫星不断监控队列大小，并将拥塞状态通知给邻卫星，邻卫星自适应减慢数据速率并搜索代替路径）；</p>
+<p>基于拥塞预测的负载均衡路由算法（非热点区域）</p>
+<blockquote>
+<p>problem: 依赖与频繁的网络状态<strong>信息交换</strong></p>
+</blockquote>
+<h2 id="网络模型"><a href="#网络模型" class="headerlink" title="网络模型"></a>网络模型</h2><h3 id="极轨道"><a href="#极轨道" class="headerlink" title="极轨道"></a>极轨道</h3><p>上下左右邻居</p>
+<p>经过极地面间ISL断开</p>
+<p>第一个和最后一个轨道平面运动方向相反，无ISL</p>
+<h3 id="空间段的网络模型"><a href="#空间段的网络模型" class="headerlink" title="空间段的网络模型"></a>空间段的网络模型</h3><p>可用无向简单图来建模</p>
+<p>S:satellite node; L:link</p>
+<h4 id="卫星路由器和卫星网关"><a href="#卫星路由器和卫星网关" class="headerlink" title="卫星路由器和卫星网关"></a>卫星路由器和卫星网关</h4><p>卫星配置OBP和ISLs后，可视为<strong>卫星路由器</strong>SR</p>
+<p>卫星能够通过星地链路与地面网关直接通信，可视为<strong>卫星网关</strong>SG</p>
+<p>SG 为 SR 的子集</p>
+<p>SG 非固定，随着卫星移动，地面网关覆盖范围变化而更新。地面网关<strong>只与一颗</strong>卫星相连，鲁棒性低。每颗卫星<strong>都有可能</strong>成为SG，但是有的卫星不是SG。</p>
+<h3 id="卫星虚拟地址"><a href="#卫星虚拟地址" class="headerlink" title="卫星虚拟地址"></a>卫星虚拟地址</h3><p>(vi, hj) 为第i个平面的第j颗卫星。h固定，v根据卫星纬度动态更新。当发生虚拟地址更新时，新的卫星将扮演前一颗卫星的角色，并继承其网络状态。因为伴随着信息的交换，会带来开销增大问题。</p>
+
+  </div>
+  
+    
+      <a id="older" class="blog-nav" href="/2022/05/02/K8S%E6%A1%86%E6%9E%B6-%E7%BB%84%E4%BB%B6/">OLDER&nbsp;&gt;</a>
+      
+        
+          <a id="newer" class="blog-nav" href="/2022/05/04/Go%E8%AF%AD%E8%A8%80%E5%9C%A3%E7%BB%8F%E5%AD%A6%E4%B9%A0/">&lt;&nbsp;NEWER</a>
+          
+            
+</div>
+        <div class="footer">
+  
+    <div class="footer-more">
+      
+        <a target="_blank" rel="noopener" href="https://github.com/leedom92/hexo-theme-leedom">Copyright © Leedom 2021</a>
+        
+    </div>
+  
+    <div class="footer-more">
+      
+        <a target="_blank" rel="noopener" href="https://github.com/leedom92/hexo-theme-leedom">Theme by Leedom | Powered by Hexo</a>
+        
+    </div>
+  
+</div>
+
+      </div>
+
+      <div class="back-to-top hidden">
+  <a href="javascript: void(0)">
+    <i class="iconfont icon-chevronup"></i>
+  </a>
+</div>
+
+
+<script src="/js/backtotop.js"></script>
+
+
+
+      
+  <div class="search-icon" id="search-icon">
+    <a href="javascript: void(0)">
+      <i class="iconfont icon-search"></i>
+    </a>
   </div>
 
-  {{ partial("_partial/footer") }}
+  <div class="search-overlay hidden">
+    <div class="search-content" tabindex="0">
+      <div class="search-box">
+        <div class="search-title">
+          <!-- <span class="search-icon-input">
+            <a href="javascript: void(0)">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </span> -->
+          
+            <input type="text" class="search-input" id="search-input" placeholder="$ grep...">
+          
+          <span class="search-close-icon" id="search-close-icon">
+            <a href="javascript: void(0)">
+              <i class="iconfont icon-close"></i>
+            </a>
+          </span>
+        </div>
+        <div class="search-result" id="search-result"></div>
+      </div>
+    </div>
+  </div>
 
-  <br>
+  <script type="text/javascript">
+    var inputArea = document.querySelector("#search-input")
+    var searchOverlayArea = document.querySelector(".search-overlay")
 
-  <div id="footer-nav" class='footer-nav'>
-		{{ partial('_partial/nav', {position: 'footer'}) }}
-	</div>
+    // inputArea.onclick = function() {
+    //   getSearchFile()
+    //   this.onclick = null
+    // }
 
-  {{ partial("_partial/after-footer") }}
-<!-- End Document
-  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-</body>
+    inputArea.onkeydown = function() {
+      if(event.keyCode == 13)
+        return false
+    }
+
+    function openOrHideSearchContent() {
+      let isHidden = searchOverlayArea.classList.contains('hidden')
+      if (isHidden) {
+        searchOverlayArea.classList.remove('hidden')
+        document.body.classList.add('hidden')
+        inputArea.focus()
+        getSearchFile()
+      } else {
+        searchOverlayArea.classList.add('hidden')
+        document.body.classList.remove('hidden')
+      }
+    }
+
+    function blurSearchContent(e) {
+      if (e.target === searchOverlayArea) {
+        openOrHideSearchContent()
+      }
+    }
+
+    document.querySelector("#search-icon").addEventListener("click", openOrHideSearchContent, false)
+    document.querySelector("#search-close-icon").addEventListener("click", openOrHideSearchContent, false)
+    searchOverlayArea.addEventListener("click", blurSearchContent, false)
+
+    var searchFunc = function (path, search_id, content_id) {
+      'use strict';
+      var $input = document.getElementById(search_id);
+      var $resultContent = document.getElementById(content_id);
+      $resultContent.innerHTML = "<ul><span class='local-search-empty'><span></ul>";
+      // $resultContent.innerHTML = "<ul><span class='local-search-empty'>First search, index file loading, please wait...<span></ul>";
+      $.ajax({
+        // 0x01. load xml file
+        url: path,
+        dataType: "xml",
+        success: function (xmlResponse) {
+          // 0x02. parse xml file
+          var datas = $("entry", xmlResponse).map(function () {
+            return {
+              title: $("title", this).text(),
+              content: $("content", this).text(),
+              url: $("url", this).text()
+            };
+          }).get();
+          $resultContent.innerHTML = "";
+
+          $input.addEventListener('input', function () {
+            // 0x03. parse query to keywords list
+            var str = '<ul class=\"search-result-list\">';
+            var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+            $resultContent.innerHTML = "";
+            if (this.value.trim().length <= 0) {
+              return;
+            }
+            // 0x04. perform local searching
+            datas.forEach(function (data) {
+              var isMatch = true;
+              var content_index = [];
+              if (!data.title || data.title.trim() === '') {
+                data.title = "Untitled";
+              }
+              var orig_data_title = data.title.trim();
+              var data_title = orig_data_title.toLowerCase();
+              var orig_data_content = data.content.trim().replace(/<[^>]+>/g, "");
+              var data_content = orig_data_content.toLowerCase();
+              var data_url = data.url;
+              var index_title = -1;
+              var index_content = -1;
+              var first_occur = -1;
+              // only match artiles with not empty contents
+              if (data_content !== '') {
+                keywords.forEach(function (keyword, i) {
+                  index_title = data_title.indexOf(keyword);
+                  index_content = data_content.indexOf(keyword);
+
+                  if (index_title < 0 && index_content < 0) {
+                    isMatch = false;
+                  } else {
+                    if (index_content < 0) {
+                      index_content = 0;
+                    }
+                    if (i == 0) {
+                      first_occur = index_content;
+                    }
+                    // content_index.push({index_content:index_content, keyword_len:keyword_len});
+                  }
+                });
+              } else {
+                isMatch = false;
+              }
+              // 0x05. show search results
+              if (isMatch) {
+                str += "<li><a href='/" + data_url + "' class='search-result-title'><h2>" + orig_data_title + "</h2></a>";
+                var content = orig_data_content;
+                if (first_occur >= 0) {
+                  // cut out 100 characters
+                  var start = first_occur - 20;
+                  var end = first_occur + 80;
+
+                  if (start < 0) {
+                    start = 0;
+                  }
+
+                  if (start == 0) {
+                    end = 100;
+                  }
+
+                  if (end > content.length) {
+                    end = content.length;
+                  }
+
+                  var match_content = content.substr(start, end);
+
+                  // highlight all keywords
+                  keywords.forEach(function (keyword) {
+                    var regS = new RegExp(keyword, "gi");
+                    match_content = match_content.replace(regS, "<span class=\"search-keyword\">" + keyword + "</span>");
+                  });
+
+                  str += "<h3 class=\"search-result-abstract\">" + match_content + "...</h3>"
+                }
+                str += "<hr></li>";
+              }
+            });
+            str += "</ul>";
+            if (str.indexOf('<li>') === -1) {
+              return $resultContent.innerHTML = "<ul><span class='local-search-empty'>No result<span></ul>";
+            }
+            $resultContent.innerHTML = str;
+          });
+        },
+        error: function(xhr, status, error) {
+          $resultContent.innerHTML = ""
+          if (xhr.status === 404) {
+            $resultContent.innerHTML = "<ul><span class='local-search-empty'>The search.xml file was not found, please refer to：<a href='https://github.com/leedom92/hexo-theme-leedom#configuration' target='_black'>configuration</a><span></ul>";
+          } else {
+            $resultContent.innerHTML = "<ul><span class='local-search-empty'>The request failed, Try to refresh the page or try again later.<span></ul>";
+          }
+        }
+      });
+      $(document).on('click', '#search-close-icon', function() {
+        $('#search-input').val('');
+        $('#search-result').html('');
+      });
+    }
+
+    var getSearchFile = function() {
+        var path = "/search.xml";
+        searchFunc(path, 'search-input', 'search-result');
+    }
+  </script>
+
+
+
+
+    </div>
+  </body>
 </html>

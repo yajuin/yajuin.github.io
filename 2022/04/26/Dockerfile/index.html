@@ -1,27 +1,429 @@
 <!DOCTYPE html>
 <html lang="en">
-{{ partial("_partial/head") }}
-<body style="display: flex; flex-direction: column; min-height: 100vh;">
-{{ partial("_partial/header") }}
 
- {{ partial("_partial/announcement-js", {item: page}) }}
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="keywords" content="" />
+  <meta name="author" content="李亚君" />
+  <meta name="description" content="" />
+  
+  
+  <title>
+    
+      Dockerfile 
+      
+      
+    
+  </title>
 
-  <!-- Primary Page Layout
-  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-  <div style="flex: 1;">
-      {{ body }}
+  
+    <link rel="apple-touch-icon" href="/images/favicon.png">
+    <link rel="icon" href="/images/favicon.png">
+  
+
+  <!-- Raleway-Font -->
+  <link href="https://fonts.googleapis.com/css?family=Montserrat|Roboto:400,400italic,600|Roboto+Mono" rel="stylesheet">
+
+  <!-- hexo site css -->
+  
+<link rel="stylesheet" href="/css/base.css">
+<link rel="stylesheet" href="/css/common.css">
+<link rel="stylesheet" href="/iconfont/iconfont.css">
+
+
+  
+
+  
+    
+<link rel="stylesheet" href="/css/post.css">
+
+  
+
+  <!-- jquery3.3.1 -->
+  <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+
+  <!-- fancybox -->
+  <link href="https://cdn.bootcss.com/fancybox/3.5.2/jquery.fancybox.min.css" rel="stylesheet">
+  <script async src="https://cdn.bootcss.com/fancybox/3.5.2/jquery.fancybox.min.js"></script>
+  
+<script src="/js/fancybox.js"></script>
+
+
+<meta name="generator" content="Hexo 6.1.0"></head>
+
+
+  <body>
+    <div id="app">
+      <div class="header">
+  <a href="/">LEEDOM</a>
+</div>
+
+
+      <p class="links">
+  
+    <a title="archives" target="" href="/archives/">
+      <i class="iconfont icon-bookmark"></i>
+    </a>
+  
+    <a title="github" target="_blank" href="https://github.com/leedom92/hexo-theme-leedom">
+      <i class="iconfont icon-github"></i>
+    </a>
+  
+    <a title="email" target="" href="">
+      <i class="iconfont icon-envelope"></i>
+    </a>
+  
+    <a title="facebook" target="" href="">
+      <i class="iconfont icon-facebooksquare"></i>
+    </a>
+  
+    <a title="twitter" target="" href="">
+      <i class="iconfont icon-twitter"></i>
+    </a>
+  
+    <a title="wechat" target="" href="">
+      <i class="iconfont icon-wechat"></i>
+    </a>
+  
+    <a title="weibo" target="" href="">
+      <i class="iconfont icon-weibo"></i>
+    </a>
+  
+    <a title="rss" target="_blank" href="/atom.xml">
+      <i class="iconfont icon-rss"></i>
+    </a>
+  
+</p>
+
+
+      <div class="main">
+        <!-- 文章详情页，展示文章具体内容，url形式：https://yoursite/文章标题/ -->
+<!-- 同时为「标签tag」，「朋友friend」，「分类categories」，「关于about」页面的承载页面，具体展示取决于page.type -->
+
+<!-- LaTex Display -->
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script type="text/javascript" id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
+</script>
+<script>
+  MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']]
+    }
+  };
+</script>
+
+<div class="post">
+  <h3 class="date">
+    Apr 26, 2022
+  </h3>
+  <h1>
+    Dockerfile
+  </h1>
+  <div class="content markdown-body">
+    <h3 id="初识-Dockerfile"><a href="#初识-Dockerfile" class="headerlink" title="初识 Dockerfile"></a>初识 Dockerfile</h3><p>Dockerfile 是用来构建 docker 镜像的构建文件！命令脚本！</p>
+<p>镜像是分层的，脚本里有多个命令，一个命令就是一层。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">mkdir dockerfile_test_volume</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">写脚本，构建docker镜像，只有容器名，所以是匿名挂载</span></span><br><span class="line">vim dockerfile1</span><br><span class="line"></span><br><span class="line">FROM centos</span><br><span class="line"></span><br><span class="line">VOLUME [&quot;volume01&quot;,&quot;volume02&quot;]</span><br><span class="line"></span><br><span class="line">CMD echo &quot;------end--------&quot;</span><br><span class="line">CMD /bin/bash</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">查看文件内容</span></span><br><span class="line">cat dockerfile1</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">建造镜像</span></span><br><span class="line">docker build -f dockerfile1 -t yajun/centos .</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">启动镜像,启动容器</span></span><br><span class="line">docker run -it 12e7c1e19f27 /bin/bash</span><br><span class="line">cd volume01</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">创建文件</span></span><br><span class="line">touch container.exe</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">查看匿名挂载到的宿主机目录</span></span><br><span class="line">docker inspect 容器ID</span><br><span class="line">&quot;Source&quot;: &quot;/var/lib/docker/volumes/d4db7657c5fc8f6fd2878d0f9499d62054397766522e27f31d8b435f3b405b77/_data&quot;</span><br><span class="line">cd /var/lib/docker/volumes/d4db7657c5fc8f6fd2878d0f9499d62054397766522e27f31d8b435f3b405b77/_data</span><br><span class="line">ls</span><br><span class="line">container.exe</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h3 id="数据卷容器"><a href="#数据卷容器" class="headerlink" title="数据卷容器"></a>数据卷容器</h3><p>多个MySQL 同步数据    –volumes-from</p>
+<p>两个容器共用一份数据，指针指向同一块存储区域，且都是硬链接.</p>
+<p><img src="C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20220426101623921.png" alt="image-20220426101623921"></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">运行 进入容器</span></span><br><span class="line">docker run -it --name docker01 yajun/centos</span><br><span class="line">ls -l</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">ctrl P Q</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">进入容器2,子容器</span></span><br><span class="line">docker run -it --name docker02 --volumes-from docker01 yajun/centos</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">into 容器1</span></span><br><span class="line"></span><br><span class="line">cd volume01</span><br><span class="line">touch docker01</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">into 容器2</span></span><br><span class="line">cd volume01</span><br><span class="line">ls</span><br></pre></td></tr></table></figure>
+
+
+
+<p>tips：两容器只共享 -v 后的单个文件</p>
+<h3 id="Dockerfile-介绍"><a href="#Dockerfile-介绍" class="headerlink" title="Dockerfile 介绍"></a>Dockerfile 介绍</h3><p>dockerfile 核心是用来构建docker镜像的文件！ 命令参数脚本</p>
+<p>构建步骤：</p>
+<ul>
+<li>编写一个dockerfile文件</li>
+<li>docker build 构建成为一个镜像</li>
+<li>docker run 运行镜像</li>
+<li>docker push 发布镜像（DockerHub）</li>
+</ul>
+<h4 id="DockerFile-的指令"><a href="#DockerFile-的指令" class="headerlink" title="DockerFile 的指令"></a>DockerFile 的指令</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">FROM 		# 基础镜像，以此为基础</span><br><span class="line">MAINTAINER	# 镜像作者，姓名+邮箱</span><br><span class="line">RUN 		# 运行，镜像构建</span><br><span class="line">ADD			# 步骤：tomcat镜像，需添加tomcat压缩包</span><br><span class="line">WORKDIR		# 镜像的工作目录	/bin/bash</span><br><span class="line">VOLUME		# 挂载的目录 -v</span><br><span class="line">EXPOSE		# 暴露端口 -p</span><br><span class="line"></span><br><span class="line">CMD 		# 指定容器启动时所运行命令 cmd echo</span><br><span class="line">ENTRYPOINT	# 同 CMD ，但可以追加命令</span><br><span class="line">COPY 		# 同 ADD， 将文件copy到镜像</span><br><span class="line">ENV			# 构建时设置环境变量 -e</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h3 id="Project"><a href="#Project" class="headerlink" title="Project:"></a>Project:</h3><h4 id="1-my-own-centos"><a href="#1-my-own-centos" class="headerlink" title="1. my own centos"></a>1. my own centos</h4><p>Docker Hub 中镜像都是从基础镜像来 FROM scratch</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">问题：centos官方默认没有 vim, ifconfig 命令</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">1. 写dockerfile</span></span><br><span class="line">mkdir dockerfile</span><br><span class="line"></span><br><span class="line">vim mydockerfile</span><br><span class="line"></span><br><span class="line">[root@VM-24-6-centos dockerfile]# cat mydockerfile </span><br><span class="line">FROM centos:7</span><br><span class="line"></span><br><span class="line">MAINTAINER yajun&lt;1491085293@qq.com&gt;</span><br><span class="line"></span><br><span class="line">ENV MYPATH /usr/local</span><br><span class="line"></span><br><span class="line">WORKDIR $MYPATH</span><br><span class="line"></span><br><span class="line">RUN yum -y install vim</span><br><span class="line">RUN yum -y install net-tools</span><br><span class="line"></span><br><span class="line">EXPOSE 80</span><br><span class="line"></span><br><span class="line">CMD echo $MYPATH</span><br><span class="line">CMD echo &quot;-------end------&quot;</span><br><span class="line">CMD /bin/bash </span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">2. 根据文件构建镜像</span></span><br><span class="line">docker build -f mydockerfile -t mycentos:0.1 .</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">3. 进入镜像</span></span><br><span class="line">docker run -t mycentos:0.1</span><br><span class="line">pwd</span><br><span class="line">ifconfig</span><br><span class="line"></span><br><span class="line">docker history 镜像ID</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+<blockquote>
+<p>CMD 和 ENTRYPOINT 区别</p>
+</blockquote>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line">CMD			# 指定容器启动时所运行的命令，只有最后一个生效，可被替代</span><br><span class="line">ENTRYPOINT	# 可追加命令</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash"><span class="comment"># CMD dockerfile</span></span></span><br><span class="line">FROM centos</span><br><span class="line"></span><br><span class="line">CMD [&quot;ls&quot;,&quot;-a&quot;]</span><br><span class="line"></span><br><span class="line">docker build -f dockerfile_cmd_test -t cmdtest .</span><br><span class="line">docker run f67f37c80205		# 同时会运行 ls -a</span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash"><span class="comment"># ls -a</span></span></span><br><span class="line">.</span><br><span class="line">..</span><br><span class="line">.dockerenv</span><br><span class="line">bin</span><br><span class="line">dev</span><br><span class="line">etc</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">but 想要追加命令 <span class="built_in">ls</span> -al</span> </span><br><span class="line">docker run f67f37c80205 -l	# error</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">因为 cmd 后面追加命令是替换操作，需要提供完整命令</span></span><br><span class="line">docker run f67f37c80205 ls -al</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash"><span class="comment"># ENTRYPOINT dockerfile</span></span></span><br><span class="line">FROM centos</span><br><span class="line"></span><br><span class="line">ENTRYPOINT [&quot;ls&quot;,&quot;-a&quot;]</span><br><span class="line">docker build -f dockerfile-cmd-entrypoint -t entrypoint_test .</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">可在后面直接追加 -l</span></span><br><span class="line">[root@VM-24-6-centos dockerfile]# docker run 2ea304b93b2e -l</span><br><span class="line">total 56</span><br><span class="line">drwxr-xr-x   1 root root 4096 Apr 27 08:32 .</span><br><span class="line">drwxr-xr-x   1 root root 4096 Apr 27 08:32 ..</span><br><span class="line">-rwxr-xr-x   1 root root    0 Apr 27 08:32 .dockerenv</span><br><span class="line">lrwxrwxrwx   1 root root    7 Nov  3  2020 bin -&gt; usr/bin</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">rm -f yajun.java  	# 删除文件</span><br><span class="line">scp D:\chromeDownload\apache-tomcat-9.0.62.tar.gz root@82.157.166.254:/home/liyajun/build/tomcat	# copy文件</span><br><span class="line">scp D:\chromeDownload\jdk-18_linux-x64_bin.tar.gz root@82.157.166.254:/home/liyajun/build/tomcat</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="2-My-Tomcat-image"><a href="#2-My-Tomcat-image" class="headerlink" title="2. My Tomcat image"></a>2. My Tomcat image</h4><ul>
+<li>准备 tomcat 压缩包， jdk 压缩包</li>
+<li>write dockerfile</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line">cd liyajun/build/tomcat</span><br><span class="line"></span><br><span class="line">vim Dockerfile	# 官方命名 Dockerfile, build 时不加-f 会默认寻找该文件</span><br><span class="line"></span><br><span class="line">FROM centos:7</span><br><span class="line"></span><br><span class="line">MAINTAINER yajun&lt;1491085293@qq.com&gt;</span><br><span class="line"></span><br><span class="line">COPY readme.txt /usr/local/readme.txt</span><br><span class="line"></span><br><span class="line">ADD jdk-8u211-linux-x64.tar.gz /usr/local/</span><br><span class="line">ADD apache-tomcat-9.0.62.tar.gz /usr/local/</span><br><span class="line"></span><br><span class="line">RUN yum -y install vim</span><br><span class="line"></span><br><span class="line">ENV MYPATH /usr/local</span><br><span class="line"></span><br><span class="line">WORKDIR $MYPATH</span><br><span class="line"></span><br><span class="line">ENV JAVA_HOME usr/local/jdk1.8.0_211</span><br><span class="line">ENV CLASSPATH $JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar</span><br><span class="line"></span><br><span class="line">ENV CATALINA_HOME /usr/local/apache-tomcat-9.0.62</span><br><span class="line">ENV CATALINA_BASH /usr/local/apache-tomcat-9.0.62</span><br><span class="line"></span><br><span class="line">ENV PATH $PATH:$JAVA_HOME/bin:$CATALINA_HOME/lib:$CATALINA_HOME/bin</span><br><span class="line"></span><br><span class="line">EXPOSE 8080</span><br><span class="line"></span><br><span class="line">CMD /usr/local/apache-tomcat-9.0.62/bin/startup.sh &amp;&amp; tail -F /usr/local/apache-tomcat-9.0.62/bin/logs/catalina.out</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">build</span></span><br><span class="line">docker build -t diytomcat .</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">run</span></span><br><span class="line">docker run -d -p 9090:8080 --name yajuntomcat2 -v /home/liyajun/build/tomcat/test:/usr/local/apache-tomcat-9.0.62/webapps/test -v /home/liyajun/build/tomcat/tomcatlogs:/usr/local/apache-tomcat-9.0.62/logs diytomcat</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">!!error!!</span> </span><br><span class="line">[root@VM-24-6-centos ~]# curl localhost:9090</span><br><span class="line">curl: (56) Recv failure: Connection reset by peer</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">在宿主机/test/下新建文件</span></span><br><span class="line">mkdir WEB-INF</span><br><span class="line">vim web.xml</span><br><span class="line">vim index.jsp</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h3 id="发布到DockerHub"><a href="#发布到DockerHub" class="headerlink" title="发布到DockerHub"></a>发布到DockerHub</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">docker login -u yajuin</span><br><span class="line">password: liyajun123</span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash"><span class="comment"># 竟然 successed?!</span></span></span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">改镜像名字和版本号</span></span><br><span class="line">docker tag 41482965a6f8 yajuin/tomcat:1.0</span><br><span class="line">docker push yajuin/tomcat:1.0</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p><img src="/../../../../../AppData/Roaming/Typora/typora-user-images/image-20220427222023745.png" alt="image-20220427222023745"></p>
+<h4 id="发布到腾讯云容器镜像服务"><a href="#发布到腾讯云容器镜像服务" class="headerlink" title="发布到腾讯云容器镜像服务"></a>发布到腾讯云容器镜像服务</h4><ul>
+<li>进入容器镜像服务</li>
+<li>创建命名空间  liyajun</li>
+<li>创建容器镜像 liyajun_work</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">docker login --username=100023314672  ccr.ccs.tencentyun.com</span><br><span class="line"></span><br><span class="line">docker push yajuin/tomcat:1.0</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+  </div>
+  
+    
+      <a id="older" class="blog-nav" href="/2022/04/25/Docker-%E5%91%BD%E4%BB%A4%E6%80%BB%E7%BB%93/">OLDER&nbsp;&gt;</a>
+      
+        
+          <a id="newer" class="blog-nav" href="/2022/04/30/docker-summary/">&lt;&nbsp;NEWER</a>
+          
+            
+</div>
+        <div class="footer">
+  
+    <div class="footer-more">
+      
+        <a target="_blank" rel="noopener" href="https://github.com/leedom92/hexo-theme-leedom">Copyright © Leedom 2021</a>
+        
+    </div>
+  
+    <div class="footer-more">
+      
+        <a target="_blank" rel="noopener" href="https://github.com/leedom92/hexo-theme-leedom">Theme by Leedom | Powered by Hexo</a>
+        
+    </div>
+  
+</div>
+
+      </div>
+
+      <div class="back-to-top hidden">
+  <a href="javascript: void(0)">
+    <i class="iconfont icon-chevronup"></i>
+  </a>
+</div>
+
+
+<script src="/js/backtotop.js"></script>
+
+
+
+      
+  <div class="search-icon" id="search-icon">
+    <a href="javascript: void(0)">
+      <i class="iconfont icon-search"></i>
+    </a>
   </div>
 
-  {{ partial("_partial/footer") }}
+  <div class="search-overlay hidden">
+    <div class="search-content" tabindex="0">
+      <div class="search-box">
+        <div class="search-title">
+          <!-- <span class="search-icon-input">
+            <a href="javascript: void(0)">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </span> -->
+          
+            <input type="text" class="search-input" id="search-input" placeholder="$ grep...">
+          
+          <span class="search-close-icon" id="search-close-icon">
+            <a href="javascript: void(0)">
+              <i class="iconfont icon-close"></i>
+            </a>
+          </span>
+        </div>
+        <div class="search-result" id="search-result"></div>
+      </div>
+    </div>
+  </div>
 
-  <br>
+  <script type="text/javascript">
+    var inputArea = document.querySelector("#search-input")
+    var searchOverlayArea = document.querySelector(".search-overlay")
 
-  <div id="footer-nav" class='footer-nav'>
-		{{ partial('_partial/nav', {position: 'footer'}) }}
-	</div>
+    // inputArea.onclick = function() {
+    //   getSearchFile()
+    //   this.onclick = null
+    // }
 
-  {{ partial("_partial/after-footer") }}
-<!-- End Document
-  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-</body>
+    inputArea.onkeydown = function() {
+      if(event.keyCode == 13)
+        return false
+    }
+
+    function openOrHideSearchContent() {
+      let isHidden = searchOverlayArea.classList.contains('hidden')
+      if (isHidden) {
+        searchOverlayArea.classList.remove('hidden')
+        document.body.classList.add('hidden')
+        inputArea.focus()
+        getSearchFile()
+      } else {
+        searchOverlayArea.classList.add('hidden')
+        document.body.classList.remove('hidden')
+      }
+    }
+
+    function blurSearchContent(e) {
+      if (e.target === searchOverlayArea) {
+        openOrHideSearchContent()
+      }
+    }
+
+    document.querySelector("#search-icon").addEventListener("click", openOrHideSearchContent, false)
+    document.querySelector("#search-close-icon").addEventListener("click", openOrHideSearchContent, false)
+    searchOverlayArea.addEventListener("click", blurSearchContent, false)
+
+    var searchFunc = function (path, search_id, content_id) {
+      'use strict';
+      var $input = document.getElementById(search_id);
+      var $resultContent = document.getElementById(content_id);
+      $resultContent.innerHTML = "<ul><span class='local-search-empty'><span></ul>";
+      // $resultContent.innerHTML = "<ul><span class='local-search-empty'>First search, index file loading, please wait...<span></ul>";
+      $.ajax({
+        // 0x01. load xml file
+        url: path,
+        dataType: "xml",
+        success: function (xmlResponse) {
+          // 0x02. parse xml file
+          var datas = $("entry", xmlResponse).map(function () {
+            return {
+              title: $("title", this).text(),
+              content: $("content", this).text(),
+              url: $("url", this).text()
+            };
+          }).get();
+          $resultContent.innerHTML = "";
+
+          $input.addEventListener('input', function () {
+            // 0x03. parse query to keywords list
+            var str = '<ul class=\"search-result-list\">';
+            var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+            $resultContent.innerHTML = "";
+            if (this.value.trim().length <= 0) {
+              return;
+            }
+            // 0x04. perform local searching
+            datas.forEach(function (data) {
+              var isMatch = true;
+              var content_index = [];
+              if (!data.title || data.title.trim() === '') {
+                data.title = "Untitled";
+              }
+              var orig_data_title = data.title.trim();
+              var data_title = orig_data_title.toLowerCase();
+              var orig_data_content = data.content.trim().replace(/<[^>]+>/g, "");
+              var data_content = orig_data_content.toLowerCase();
+              var data_url = data.url;
+              var index_title = -1;
+              var index_content = -1;
+              var first_occur = -1;
+              // only match artiles with not empty contents
+              if (data_content !== '') {
+                keywords.forEach(function (keyword, i) {
+                  index_title = data_title.indexOf(keyword);
+                  index_content = data_content.indexOf(keyword);
+
+                  if (index_title < 0 && index_content < 0) {
+                    isMatch = false;
+                  } else {
+                    if (index_content < 0) {
+                      index_content = 0;
+                    }
+                    if (i == 0) {
+                      first_occur = index_content;
+                    }
+                    // content_index.push({index_content:index_content, keyword_len:keyword_len});
+                  }
+                });
+              } else {
+                isMatch = false;
+              }
+              // 0x05. show search results
+              if (isMatch) {
+                str += "<li><a href='/" + data_url + "' class='search-result-title'><h2>" + orig_data_title + "</h2></a>";
+                var content = orig_data_content;
+                if (first_occur >= 0) {
+                  // cut out 100 characters
+                  var start = first_occur - 20;
+                  var end = first_occur + 80;
+
+                  if (start < 0) {
+                    start = 0;
+                  }
+
+                  if (start == 0) {
+                    end = 100;
+                  }
+
+                  if (end > content.length) {
+                    end = content.length;
+                  }
+
+                  var match_content = content.substr(start, end);
+
+                  // highlight all keywords
+                  keywords.forEach(function (keyword) {
+                    var regS = new RegExp(keyword, "gi");
+                    match_content = match_content.replace(regS, "<span class=\"search-keyword\">" + keyword + "</span>");
+                  });
+
+                  str += "<h3 class=\"search-result-abstract\">" + match_content + "...</h3>"
+                }
+                str += "<hr></li>";
+              }
+            });
+            str += "</ul>";
+            if (str.indexOf('<li>') === -1) {
+              return $resultContent.innerHTML = "<ul><span class='local-search-empty'>No result<span></ul>";
+            }
+            $resultContent.innerHTML = str;
+          });
+        },
+        error: function(xhr, status, error) {
+          $resultContent.innerHTML = ""
+          if (xhr.status === 404) {
+            $resultContent.innerHTML = "<ul><span class='local-search-empty'>The search.xml file was not found, please refer to：<a href='https://github.com/leedom92/hexo-theme-leedom#configuration' target='_black'>configuration</a><span></ul>";
+          } else {
+            $resultContent.innerHTML = "<ul><span class='local-search-empty'>The request failed, Try to refresh the page or try again later.<span></ul>";
+          }
+        }
+      });
+      $(document).on('click', '#search-close-icon', function() {
+        $('#search-input').val('');
+        $('#search-result').html('');
+      });
+    }
+
+    var getSearchFile = function() {
+        var path = "/search.xml";
+        searchFunc(path, 'search-input', 'search-result');
+    }
+  </script>
+
+
+
+
+    </div>
+  </body>
 </html>
