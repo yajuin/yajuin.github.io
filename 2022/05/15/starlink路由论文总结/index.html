@@ -35,6 +35,27 @@
 <p>存在缺陷和改进：</p>
 <p>Research on Multi-Agent Modeling Method of Space Based Network Information System</p>
 <p>天基网络信息系统的多智能体建模方法研究</p>
-<p>RepastHPC、SWARM、Pandora、AnyLogic。多智能体高性能计算仿真工具箱RepastHPC  信息传输的仿真实验，结合了多代理概念和并行计算技术</p>
-<p>天基网络信息系统  抽象为  路径代理和卫星代理</p>
+<p><strong>RepastHPC</strong>、SWARM、Pandora、AnyLogic。多智能体高性能计算仿真工具箱RepastHPC  信息传输的仿真实验，结合了多代理概念和并行计算技术</p>
+<p>天基网络信息系统  抽象为  路径代理和卫星代理    生成、运行、显示和收集数据 <strong>快照</strong></p>
+<p><strong>智能体</strong>  是一个具有自治性、社会性、反应性和主动性的软件系统。agent oriented programming, MAS system and<br>intelligent agent. </p>
+<p>多个智能体之间的控制、管理、通信、调度、协调和<strong>协作</strong>    SAT agent, route agent, mission agent and recon agent. </p>
+<p><strong>路由代理</strong>将所有卫星链上的数据传输服务抽象为一个代理。 提供的路由表</p>
+<p>store all satellites’ tle, 结合时间戳计算路由表</p>
+<p><img src="/image-20220527102030045.png" alt="image-20220527102030045"></p>
+<p>卫星代理根据路由表进行数据的<strong>收发</strong>，无处理</p>
+<p>TLE：随时计算卫星的具体位置</p>
+<p>Tar_TLE: 下一个传输节点的TIL属性，根据该属性来传输信息。包含在route代理发来的路由表，本地计算具体位置，激光定向链路通信进行点对点的信息传输</p>
+<p>UA V agent to mission agent</p>
+<p>使用RepastHPC工具创建上述多智能体模型，设置整个卫星空间的大小</p>
+<p><img src="/image-20220527102609652.png" alt="image-20220527102609652"></p>
+<p>模型的运行过程：</p>
+<p>步骤1：初始化仿真环境，使用<strong>Boost</strong>库初始化MPI环境，初始化reastProcess类，加载MAS模型，启动离散事件调度器；</p>
+<p>步骤2：开始运行模型，使用TIL文件生成代理；</p>
+<p>步骤3：随着TICK的增加，同一进程中的代理信息如果在同一进程之间传递，将直接发生变化。如果消息在不同进程中的代理之间传输，则使用RepastHPC提供的分布式代理实例管理服务来同步资源；</p>
+<p>步骤4：如果消息已经投递到结束的sta代理，则保存运行时间和结果；</p>
+<p>步骤5：停止运行模型，释放堆内存，结束模拟。</p>
+<p><img src="/image-20220527103536832.png" alt="image-20220527103536832"></p>
+<p>本文是国防科技重点实验室基础研究项目《基于多智能体并行计算的系统仿真方法体系研究》(DXZT-JC-ZZ-2018-06)的阶段性成果之一</p>
+<p>system of systems simulation method based on Multi-Agent parallel computing </p>
+<p>参考文献：Research on high performance parallel computing of Multi-Agent system based on repast HPC</p>
 </div></article></div><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%9C%80%E6%B1%82-%E5%A4%A7%E8%A7%84%E6%A8%A1%E6%98%9F%E5%BA%A7-%E8%B7%AF%E7%94%B1%E8%AE%A1%E7%AE%97"><span class="toc-text">需求: 大规模星座 路由计算</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A4%9A%E7%BD%91%E5%85%B3%E5%B7%A8%E5%9E%8B%E6%98%9F%E5%BA%A7%E7%BD%91%E7%BB%9C%E4%B8%AD%E7%9A%84%E5%88%86%E5%B8%83%E5%BC%8F%E6%8B%A5%E5%A1%9E%E9%81%BF%E5%85%8D%E8%B7%AF%E7%94%B1%E7%AE%97%E6%B3%95"><span class="toc-text">多网关巨型星座网络中的分布式拥塞避免路由算法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9F%BA%E4%BA%8E%E6%8B%A5%E5%A1%9E%E9%A2%84%E6%B5%8B%E7%9A%84LEO%E5%8D%AB%E6%98%9F%E7%BD%91%E7%BB%9C%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1%E8%B7%AF%E7%94%B1%E7%AE%97%E6%B3%95"><span class="toc-text">基于拥塞预测的LEO卫星网络负载均衡路由算法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%BF%80%E5%85%89%E7%BB%88%E7%AB%AF%E8%AE%BE%E8%AE%A1"><span class="toc-text">激光终端设计</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%B7%E6%9C%89%E5%80%BE%E6%96%9C%E8%BD%A8%E9%81%93%E7%9A%84%E5%A4%A7%E5%9E%8B%E6%98%9F%E5%BA%A7%E7%9A%84%E5%88%86%E5%B8%83%E5%BC%8F%E5%8F%AF%E7%94%9F%E5%AD%98%E8%B7%AF%E7%94%B1%E7%AE%97%E6%B3%95"><span class="toc-text">具有倾斜轨道的大型星座的分布式可生存路由算法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%B7%E6%9C%89%E5%8D%AB%E6%98%9F%E9%97%B4%E9%93%BE%E8%B7%AF%E7%9A%84%E5%A4%A7%E8%A7%84%E6%A8%A1%E6%98%9F%E5%BA%A7%E7%BD%91%E7%BB%9C%E4%B8%AD%E7%9A%84%E5%A4%9A%E7%BD%91%E5%85%B3%E5%B8%83%E5%B1%80"><span class="toc-text">具有卫星间链路的大规模星座网络中的多网关布局</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9C%B0%E9%9D%A2%E4%B8%AD%E7%BB%A7%E5%99%A8%E7%94%A8%E4%BA%8E%E4%BD%8E%E5%BB%B6%E8%BF%9F%E5%B9%BF%E5%9F%9F%E8%B7%AF%E7%94%B1"><span class="toc-text">地面中继器用于低延迟广域路由</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%97%B6%E9%80%9F27-000%E5%85%AC%E9%87%8C%E7%9A%84%E7%BD%91%E7%BB%9C%E6%8B%93%E6%89%91%E8%AE%BE%E8%AE%A1"><span class="toc-text">时速27,000公里的网络拓扑设计</span></a></li></ol></li></ol><div class="post-nav"><div class="prev-wrap col-md-6 col-xs-6"><i class="fa fa-angle-double-left"></i><a href="/2022/05/15/%E7%AE%80%E7%89%88%E6%8A%96%E9%9F%B3/%E7%AE%80%E7%89%88%E6%8A%96%E9%9F%B3/" class="prev-post">简版抖音</a></div><div class="next-wrap col-md-6 col-xs-6"><a href="/2022/05/14/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8B-Database-SQL-%E4%B8%8E-GORM-%E5%AE%9E%E8%B7%B5/" class="next-post">设计模式之 Database/SQL 与 GORM 实践</a><i class="fa fa-angle-double-right"></i></div></div></main></div><footer><div class="copyright"><p>Crafted with <i class="fa fa-heart"></i> by&nbsp;Hello&nbsp;|&nbsp;<a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yiliashaw/hexo-theme-prince" target="_blank">Prince</a> by SHAW</p></div></footer><script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script><script src="/js/bootstrap.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/fancybox/3.0.47/jquery.fancybox.min.js"></script><script src="/js/script.js"></script></body></html>

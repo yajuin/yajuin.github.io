@@ -127,8 +127,29 @@
 <p>存在缺陷和改进：</p>
 <p>Research on Multi-Agent Modeling Method of Space Based Network Information System</p>
 <p>天基网络信息系统的多智能体建模方法研究</p>
-<p>RepastHPC、SWARM、Pandora、AnyLogic。多智能体高性能计算仿真工具箱RepastHPC  信息传输的仿真实验，结合了多代理概念和并行计算技术</p>
-<p>天基网络信息系统  抽象为  路径代理和卫星代理</p>
+<p><strong>RepastHPC</strong>、SWARM、Pandora、AnyLogic。多智能体高性能计算仿真工具箱RepastHPC  信息传输的仿真实验，结合了多代理概念和并行计算技术</p>
+<p>天基网络信息系统  抽象为  路径代理和卫星代理    生成、运行、显示和收集数据 <strong>快照</strong></p>
+<p><strong>智能体</strong>  是一个具有自治性、社会性、反应性和主动性的软件系统。agent oriented programming, MAS system and<br>intelligent agent. </p>
+<p>多个智能体之间的控制、管理、通信、调度、协调和<strong>协作</strong>    SAT agent, route agent, mission agent and recon agent. </p>
+<p><strong>路由代理</strong>将所有卫星链上的数据传输服务抽象为一个代理。 提供的路由表</p>
+<p>store all satellites’ tle, 结合时间戳计算路由表</p>
+<p><img src="/image-20220527102030045.png" alt="image-20220527102030045"></p>
+<p>卫星代理根据路由表进行数据的<strong>收发</strong>，无处理</p>
+<p>TLE：随时计算卫星的具体位置</p>
+<p>Tar_TLE: 下一个传输节点的TIL属性，根据该属性来传输信息。包含在route代理发来的路由表，本地计算具体位置，激光定向链路通信进行点对点的信息传输</p>
+<p>UA V agent to mission agent</p>
+<p>使用RepastHPC工具创建上述多智能体模型，设置整个卫星空间的大小</p>
+<p><img src="/image-20220527102609652.png" alt="image-20220527102609652"></p>
+<p>模型的运行过程：</p>
+<p>步骤1：初始化仿真环境，使用<strong>Boost</strong>库初始化MPI环境，初始化reastProcess类，加载MAS模型，启动离散事件调度器；</p>
+<p>步骤2：开始运行模型，使用TIL文件生成代理；</p>
+<p>步骤3：随着TICK的增加，同一进程中的代理信息如果在同一进程之间传递，将直接发生变化。如果消息在不同进程中的代理之间传输，则使用RepastHPC提供的分布式代理实例管理服务来同步资源；</p>
+<p>步骤4：如果消息已经投递到结束的sta代理，则保存运行时间和结果；</p>
+<p>步骤5：停止运行模型，释放堆内存，结束模拟。</p>
+<p><img src="/image-20220527103536832.png" alt="image-20220527103536832"></p>
+<p>本文是国防科技重点实验室基础研究项目《基于多智能体并行计算的系统仿真方法体系研究》(DXZT-JC-ZZ-2018-06)的阶段性成果之一</p>
+<p>system of systems simulation method based on Multi-Agent parallel computing </p>
+<p>参考文献：Research on high performance parallel computing of Multi-Agent system based on repast HPC</p>
 </div><div class="post-meta"><a href="/2022/05/15/starlink%E8%B7%AF%E7%94%B1%E8%AE%BA%E6%96%87%E6%80%BB%E7%BB%93/" class="article-more">Read More</a></div></article><article class="post-block"><h2 class="post-title"><a href="/2022/05/14/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8B-Database-SQL-%E4%B8%8E-GORM-%E5%AE%9E%E8%B7%B5/" class="post-link">设计模式之 Database/SQL 与 GORM 实践</a></h2><div class="post-info">May 14th 2022</div><div class="post-entry"><h2 id="Database-SQL-与-GORM"><a href="#Database-SQL-与-GORM" class="headerlink" title="Database SQL 与 GORM"></a>Database SQL 与 GORM</h2><ul>
 <li><p>理解 Database&#x2F;SQL</p>
 <ul>
